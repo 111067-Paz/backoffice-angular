@@ -18,7 +18,7 @@ El **Tema 12** es un **Consumidor Puro y Orquestador de Parámetros** sin domini
 ## 🧭 Las 9 Vistas de la SPA
 
 1. **Dashboard Consolidado (`/dashboard-consolidado`):** Gráfico semanal SVG de volumen transaccional, alertas del sistema por severidad y monitoreo de APIs.
-2. **Observabilidad Institucional (`/observabilidad-institucional`):** Los 4 KPIs del PRD (CSAT Global 86.4%, CSAT Cursos 82.1% con N ≥ 5, Aprobación/Abandono 74.8%/8.4%, Promoción P90 8.9%), monitor de deriva LLM y feed de seguridad mitigada.
+2. **Observabilidad Institucional (`/observabilidad-institucional`):** Los 7 KPIs oficiales del PRD (CSAT Plataforma 86.4%, CSAT Cursos 82.1% con N ≥ 5, Aprobación 74.8%, Abandono 8.4%, Promoción P90 8.9%, Alumnos Activos 64.2%, Ritmo 2.4/sem), monitor de deriva LLM y feed de seguridad mitigada.
 3. **Gestión de Cátedras (`/gestion-catedras`):** Matriz de permisos a microservicios (1 al 6), Lista Blanca Docente (`RF-USR-02`) y catálogo de versiones de contratos OpenAPI.
 4. **Panel del Profesor (`/panel-profesor`):** Vista confidencial de cohorte (`RF-RPT-07`), Alumnos en Riesgo Académico (`RF-RPT-03`), SLA de datos en tiempo real (4 min), nómina anonimizada y exportación CSV (`RF-RNK-13`).
 5. **Reportes Analíticos (`/reportes-analiticos`):** Distribución de XP en 5 niveles, Donut de retención vs desafíos (88.3%) y rendimiento por asignatura.
