@@ -1,0 +1,113 @@
+<div class="p-8 space-y-8 max-w-7xl mx-auto">
+  <!-- Top Welcome & Quick Metric Banner -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <div>
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-semibold">MOD-01</span>
+        <span class="text-xs text-outline">•</span>
+        <span class="text-xs text-outline">Panel General & Operativo</span>
+      </div>
+      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Dashboard Consolidado</h1>
+      <p class="text-sm text-on-surface-variant mt-0.5">Monitoreo en tiempo real de microservicios, flujo académico y trazabilidad FRC.</p>
+    </div>
+    
+    <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-xl text-xs text-on-surface-variant font-medium">
+        <span class="material-symbols-outlined text-[16px]">calendar_today</span>
+        <span>Ciclo Lectivo 2026 - Q1</span>
+      </div>
+      <button
+        (click)="forceSync()"
+        [disabled]="isSyncing()"
+        class="bg-primary hover:bg-primary-container text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-2 transition-all shadow-sm disabled:opacity-50"
+      >
+        <span class="material-symbols-outlined text-[16px]" [class.animate-spin]="isSyncing()">sync</span>
+        <span>{{ isSyncing() ? 'Sincronizando...' : 'Forzar Sincronización' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Feedback -->
+  @if (syncMessage()) {
+    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 animate-fadeIn">
+      <span class="material-symbols-outlined text-[18px]">check_circle</span>
+      <span>{{ syncMessage() }}</span>
+    </div>
+  }
+
+  <!-- KPI Bento Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    @for (kpi of kpis(); track kpi.title) {
+      <div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm border border-outline-variant/30 flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div class="flex justify-between items-start mb-3">
+          <div>
+            <span class="text-xs font-semibold text-outline uppercase tracking-wider">{{ kpi.title }}</span>
+            <h3 class="text-2xl font-mono font-bold text-on-surface mt-1">{{ kpi.value }}</h3>
+          </div>
+          <div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[22px]">{{ kpi.icon }}</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-3 border-t border-surface-container-highest text-xs">
+          <span class="text-emerald-700 font-medium flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">trending_up</span>
+            {{ kpi.delta }}
+          </span>
+          <span class="text-outline font-mono text-[11px]">{{ kpi.api }}</span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Live Transactions Table -->
+  <div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 p-6 space-y-4">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-base font-bold text-on-surface">Transacciones de Microservicios en Vivo</h2>
+        <p class="text-xs text-on-surface-variant">Eventos sincronizados por Kafka Event Bus entre los 6 microservicios</p>
+      </div>
+      <span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+        14,820 Eventos Hoy
+      </span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs">
+        <thead class="bg-surface-container-low text-on-surface-variant font-semibold border-b border-surface-container-highest">
+          <tr>
+            <th class="py-3 px-4">ID Transacción</th>
+            <th class="py-3 px-4">Origen</th>
+            <th class="py-3 px-4">Destino</th>
+            <th class="py-3 px-4">Acción / Evento</th>
+            <th class="py-3 px-4">Estado</th>
+            <th class="py-3 px-4">Timestamp (UTC)</th>
+            <th class="py-3 px-4 text-right">Latencia</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-surface-container-highest">
+          @for (trx of transactions(); track trx.id) {
+            <tr class="hover:bg-surface-container-low transition-colors">
+              <td class="py-3 px-4 font-mono text-primary font-medium">{{ trx.id }}</td>
+              <td class="py-3 px-4 font-medium text-on-surface">{{ trx.origin }}</td>
+              <td class="py-3 px-4 font-medium text-on-surface">{{ trx.destination }}</td>
+              <td class="py-3 px-4 text-on-surface-variant">{{ trx.action }}</td>
+              <td class="py-3 px-4">
+                <span
+                  class="inline-flex items-center px-2 py-0.5 rounded-full font-medium text-[11px]"
+                  [class.bg-emerald-50]="trx.status === 'Completado'"
+                  [class.text-emerald-700]="trx.status === 'Completado'"
+                  [class.bg-amber-50]="trx.status === 'Reintentando'"
+                  [class.text-amber-700]="trx.status === 'Reintentando'"
+                >
+                  {{ trx.status }}
+                </span>
+              </td>
+              <td class="py-3 px-4 font-mono text-on-surface-variant">{{ trx.timestamp }}</td>
+              <td class="py-3 px-4 text-right font-mono font-medium">{{ trx.latency }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

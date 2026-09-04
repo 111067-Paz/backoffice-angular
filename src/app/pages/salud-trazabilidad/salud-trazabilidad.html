@@ -1,0 +1,93 @@
+<div class="p-8 space-y-8 max-w-7xl mx-auto">
+  <!-- Cabecera -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm">
+    <div>
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-error/15 text-error font-semibold">MOD-09</span>
+        <span class="text-xs text-outline">•</span>
+        <span class="text-xs text-outline">Infraestructura & Gateway</span>
+      </div>
+      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Salud y Trazabilidad del Ecosistema</h1>
+      <p class="text-xs text-on-surface-variant mt-0.5">Monitoreo en tiempo real del API Gateway y los 6 microservicios del Backoffice FRC.</p>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button
+        (click)="syncCaches()"
+        [disabled]="isSyncing()"
+        class="bg-primary hover:bg-primary-container text-white px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-2 shadow-sm transition-all disabled:opacity-50"
+      >
+        <span class="material-symbols-outlined text-[16px]" [class.animate-spin]="isSyncing()">sync</span>
+        <span>{{ isSyncing() ? 'Sincronizando...' : 'Sincronizar Cachés' }}</span>
+      </button>
+    </div>
+  </div>
+
+  @if (feedback()) {
+    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 animate-fadeIn">
+      <span class="material-symbols-outlined text-[18px]">check_circle</span>
+      <span>{{ feedback() }}</span>
+    </div>
+  }
+
+  <!-- Stats Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    @for (s of stats(); track s.title) {
+      <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs uppercase font-semibold text-outline tracking-wider">{{ s.title }}</span>
+          <span class="material-symbols-outlined text-[20px] text-primary">{{ s.icon }}</span>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-on-surface font-mono">{{ s.value }}</div>
+          <p class="text-xs text-emerald-700 font-medium mt-0.5">{{ s.sub }}</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Estado de los 6 Microservicios -->
+  <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm p-6 space-y-4">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-base font-bold text-on-surface">Estado de los 6 Microservicios</h2>
+        <p class="text-xs text-on-surface-variant">Topología de microservicios conectados por Spring Cloud Gateway y Kafka</p>
+      </div>
+      <span class="px-2.5 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+        6/6 Operativos
+      </span>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs">
+        <thead class="bg-surface-container-low text-on-surface-variant font-semibold border-b border-surface-container-highest">
+          <tr>
+            <th class="py-3 px-4">Microservicio</th>
+            <th class="py-3 px-4">Puerto Interno</th>
+            <th class="py-3 px-4">Latencia p95</th>
+            <th class="py-3 px-4">Uptime</th>
+            <th class="py-3 px-4">Error Rate</th>
+            <th class="py-3 px-4 text-right">Estado</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-surface-container-highest font-mono">
+          @for (svc of microservices(); track svc.name) {
+            <tr class="hover:bg-surface-container-low transition-colors">
+              <td class="py-3 px-4 font-semibold text-on-surface font-sans">{{ svc.name }}</td>
+              <td class="py-3 px-4 text-primary">:{{ svc.port }}</td>
+              <td class="py-3 px-4">{{ svc.latency }}</td>
+              <td class="py-3 px-4 text-emerald-700 font-bold">{{ svc.uptime }}</td>
+              <td class="py-3 px-4">{{ svc.errorRate }}</td>
+              <td class="py-3 px-4 text-right font-sans">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                  {{ svc.status }}
+                </span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

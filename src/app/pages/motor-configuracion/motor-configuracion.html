@@ -1,0 +1,57 @@
+<div class="p-8 space-y-8 max-w-7xl mx-auto">
+  <!-- Cabecera -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm">
+    <div>
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-tertiary/15 text-tertiary font-semibold">MOD-07</span>
+        <span class="text-xs text-outline">•</span>
+        <span class="text-xs text-outline">Configuración & Gobernanza IA</span>
+      </div>
+      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Motor de Configuración Global</h1>
+      <p class="text-xs text-on-surface-variant mt-0.5">Gestión centralizada de reglas de negocio, ponderaciones XP y límites académicos de la UTN FRC.</p>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button
+        (click)="exportAudit()"
+        class="flex items-center gap-2 px-4 py-2 bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-xl text-xs font-semibold transition-all shadow-sm"
+      >
+        <span class="material-symbols-outlined text-[16px]">download</span>
+        <span>Exportar Auditoría</span>
+      </button>
+    </div>
+  </div>
+
+  @if (feedback()) {
+    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 animate-fadeIn">
+      <span class="material-symbols-outlined text-[18px]">check_circle</span>
+      <span>{{ feedback() }}</span>
+    </div>
+  }
+
+  <!-- Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    @for (c of summaryCards(); track c.title) {
+      <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-sm flex items-center justify-between">
+        <div>
+          <span class="text-xs text-outline uppercase font-semibold">{{ c.title }}</span>
+          <div class="text-2xl font-mono font-bold text-on-surface mt-1">{{ c.value }}</div>
+          <span class="text-[11px] text-emerald-600 font-medium">{{ c.sub }}</span>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined text-[22px]">{{ c.icon }}</span>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Panel Informativo -->
+  <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm p-6 space-y-4">
+    <h2 class="text-base font-bold text-on-surface">Arquitectura de Configuración Versionada</h2>
+    <p class="text-xs text-on-surface-variant leading-relaxed">
+      Todos los cambios en parámetros emiten eventos <code>GlobalConfigurationChanged</code> al tópico 
+      <code>frc.global-config.changed</code> en el clúster Kafka. Cada microservicio mantiene una caché local 
+      L1 en Redis y actualiza sus estados en memoria sin requerir reinicio de instancias (zero downtime deployment).
+    </p>
+  </div>
+</div>

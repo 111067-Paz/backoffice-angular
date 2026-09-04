@@ -1,0 +1,113 @@
+<div class="p-8 space-y-8 max-w-7xl mx-auto">
+  <!-- Cabecera de Contexto Docente -->
+  <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col xl:flex-row xl:items-center justify-between gap-6">
+    <div class="space-y-2">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-secondary/15 text-secondary font-semibold">MOD-04</span>
+        <span class="text-xs text-outline">•</span>
+        <span class="text-xs text-outline">Gestión Académica & Docente</span>
+      </div>
+      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Panel del Profesor: Monitoreo de Cohorte</h1>
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Cohorte Activa
+        </span>
+        <span class="text-xs text-on-surface-variant font-medium">42 Alumnos Matriculados</span>
+      </div>
+    </div>
+
+    <!-- Acciones -->
+    <div class="flex items-center gap-3">
+      <button
+        (click)="exportCSV()"
+        class="flex items-center gap-2 bg-primary hover:bg-primary-container text-white px-4 py-2 rounded-xl text-xs font-semibold transition-all shadow-sm"
+      >
+        <span class="material-symbols-outlined text-[16px]">download</span>
+        <span>Descargar Acta CSV (RF-RNK-13)</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Callout Confidencialidad Docente RF-RPT-07 -->
+  <div class="flex items-center gap-3.5 px-4 py-3 bg-blue-50/70 border border-blue-100 rounded-xl text-xs text-blue-900">
+    <span class="material-symbols-outlined text-primary text-[20px]">shield</span>
+    <div class="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+      <p>
+        <strong>Alcance Docente:</strong> Métricas acotadas a tu comisión asignada (Sin comparación entre docentes - <span class="font-mono font-semibold">RF-RPT-07</span>).
+      </p>
+      <span class="font-mono text-[11px] text-primary font-semibold">Modo Confidencial FRC</span>
+    </div>
+  </div>
+
+  @if (toastMessage()) {
+    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 animate-fadeIn">
+      <span class="material-symbols-outlined text-[18px]">info</span>
+      <span>{{ toastMessage() }}</span>
+    </div>
+  }
+
+  <!-- Tabla de Seguimiento de Alumnos -->
+  <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm p-6 space-y-4">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-base font-bold text-on-surface">Rendimiento y Gamificación de Alumnos</h2>
+        <p class="text-xs text-on-surface-variant">Desafíos entregados, vidas restantes y alertas de retención</p>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs">
+        <thead class="bg-surface-container-low text-on-surface-variant font-semibold border-b border-surface-container-highest">
+          <tr>
+            <th class="py-3 px-4">Legajo</th>
+            <th class="py-3 px-4">Alumno</th>
+            <th class="py-3 px-4 text-center">Desafíos</th>
+            <th class="py-3 px-4 text-center">Vidas</th>
+            <th class="py-3 px-4 text-right">XP Acumulada</th>
+            <th class="py-3 px-4 text-center">Estado Académico</th>
+            <th class="py-3 px-4 text-right">Acción</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-surface-container-highest">
+          @for (s of students(); track s.legajo) {
+            <tr class="hover:bg-surface-container-low transition-colors">
+              <td class="py-3.5 px-4 font-mono font-semibold text-primary">{{ s.legajo }}</td>
+              <td class="py-3.5 px-4 font-medium text-on-surface">{{ s.name }}</td>
+              <td class="py-3.5 px-4 text-center font-mono">{{ s.desafios }}</td>
+              <td class="py-3.5 px-4 text-center font-mono">
+                <span class="text-red-500 font-bold">♥ {{ s.vidas }}</span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold">{{ s.xp }} XP</td>
+              <td class="py-3.5 px-4 text-center">
+                <span
+                  class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold"
+                  [class.bg-emerald-50]="s.status === 'Ritmo Óptimo'"
+                  [class.text-emerald-700]="s.status === 'Ritmo Óptimo'"
+                  [class.bg-blue-50]="s.status === 'Regular'"
+                  [class.text-blue-700]="s.status === 'Regular'"
+                  [class.bg-red-50]="s.status === 'En Riesgo'"
+                  [class.text-red-700]="s.status === 'En Riesgo'"
+                >
+                  {{ s.status }}
+                </span>
+              </td>
+              <td class="py-3.5 px-4 text-right">
+                @if (s.status === 'En Riesgo') {
+                  <button
+                    (click)="triggerAlert(s)"
+                    class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold text-[11px] transition-all shadow-sm"
+                  >
+                    Disparar Alerta
+                  </button>
+                } @else {
+                  <span class="text-outline text-[11px]">Normal</span>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

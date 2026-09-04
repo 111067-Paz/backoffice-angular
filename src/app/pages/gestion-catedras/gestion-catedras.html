@@ -1,0 +1,106 @@
+<div class="p-8 space-y-8 max-w-7xl mx-auto">
+  <!-- Cabecera -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <div>
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-secondary/15 text-secondary font-semibold">MOD-03</span>
+        <span class="text-xs text-outline">•</span>
+        <span class="text-xs text-outline">Gestión Académica & Docente</span>
+      </div>
+      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Gestión de Cátedras Institucionales</h1>
+      <p class="text-sm text-on-surface-variant mt-0.5">Control de claustro docente, comisiones por departamento y auditoría de carga académica.</p>
+    </div>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    @for (s of stats(); track s.title) {
+      <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs uppercase font-semibold text-outline tracking-wider">{{ s.title }}</span>
+          <span class="material-symbols-outlined text-[20px] text-secondary">{{ s.icon }}</span>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-on-surface font-mono">{{ s.value }}</div>
+          <p class="text-xs text-on-surface-variant mt-0.5">{{ s.sub }}</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Search & Filter Toolbar -->
+  <div class="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant/30 shadow-sm flex flex-col md:flex-row gap-4 items-center justify-between">
+    <div class="relative flex-1 w-full">
+      <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+      <input
+        type="text"
+        [value]="searchTerm()"
+        (input)="onSearch($event)"
+        placeholder="Buscar por cátedra, código o profesor titular..."
+        class="w-full pl-9 pr-4 py-2 bg-surface-container-low rounded-lg text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-primary border border-outline-variant/40"
+      />
+    </div>
+
+    <div class="flex items-center gap-3 w-full md:w-auto">
+      <select
+        [value]="selectedDept()"
+        (change)="onSelectDept($event)"
+        class="bg-surface-container-low text-on-surface text-xs py-2 px-3 rounded-lg border border-outline-variant/40 focus:outline-none focus:ring-2 focus:ring-primary"
+      >
+        <option value="Todos">Todos los Departamentos</option>
+        <option value="Sistemas">Ingeniería en Sistemas</option>
+        <option value="Electrónica">Ingeniería Electrónica</option>
+        <option value="Industrial">Ingeniería Industrial</option>
+        <option value="Mecánica">Ingeniería Mecánica</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs">
+        <thead class="bg-surface-container-low text-on-surface-variant font-semibold border-b border-surface-container-highest">
+          <tr>
+            <th class="py-3 px-4">Código</th>
+            <th class="py-3 px-4">Cátedra</th>
+            <th class="py-3 px-4">Departamento</th>
+            <th class="py-3 px-4">Profesor Titular</th>
+            <th class="py-3 px-4 text-center">Comisiones</th>
+            <th class="py-3 px-4 text-center">Matrícula</th>
+            <th class="py-3 px-4 text-right">Estado</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-surface-container-highest">
+          @for (c of filteredCatedras(); track c.code) {
+            <tr class="hover:bg-surface-container-low transition-colors">
+              <td class="py-3.5 px-4 font-mono font-semibold text-primary">{{ c.code }}</td>
+              <td class="py-3.5 px-4 font-medium text-on-surface">{{ c.name }}</td>
+              <td class="py-3.5 px-4 text-on-surface-variant">{{ c.dept }}</td>
+              <td class="py-3.5 px-4 text-on-surface">{{ c.titular }}</td>
+              <td class="py-3.5 px-4 text-center font-mono">{{ c.comisiones }}</td>
+              <td class="py-3.5 px-4 text-center font-mono font-semibold">{{ c.matricula }}</td>
+              <td class="py-3.5 px-4 text-right">
+                <span
+                  class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold"
+                  [class.bg-emerald-50]="c.status === 'Activa'"
+                  [class.text-emerald-700]="c.status === 'Activa'"
+                  [class.bg-amber-50]="c.status === 'En Auditoría'"
+                  [class.text-amber-700]="c.status === 'En Auditoría'"
+                >
+                  {{ c.status }}
+                </span>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="7" class="py-8 text-center text-outline">
+                No se encontraron cátedras con los filtros actuales
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="p-8 space-y-8 max-w-7xl mx-auto">
+  <!-- Cabecera -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm">
+    <div>
+      <div class="flex items-center gap-2 mb-1">
+        <span class="text-xs font-mono px-2 py-0.5 rounded bg-secondary/15 text-secondary font-semibold">MOD-05</span>
+        <span class="text-xs text-outline">•</span>
+        <span class="text-xs text-outline">Gestión Académica & Docente</span>
+      </div>
+      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Reportes Analíticos y Gamificación</h1>
+      <p class="text-sm text-on-surface-variant mt-0.5">Monitoreo de rendimiento académico, engagement de estudiantes y métricas por cohorte.</p>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button
+        (click)="generatePDF()"
+        class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-white text-xs font-semibold hover:bg-primary-container transition-all shadow-sm"
+      >
+        <span class="material-symbols-outlined text-[16px]">picture_as_pdf</span>
+        <span>Generar PDF Institucional</span>
+      </button>
+    </div>
+  </div>
+
+  @if (feedback()) {
+    <div class="bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs px-4 py-2.5 rounded-xl flex items-center gap-2 animate-fadeIn">
+      <span class="material-symbols-outlined text-[18px]">check_circle</span>
+      <span>{{ feedback() }}</span>
+    </div>
+  }
+
+  <!-- KPIs de Rendimiento -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    @for (m of metrics(); track m.title) {
+      <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs uppercase font-semibold text-outline tracking-wider">{{ m.title }}</span>
+          <span class="material-symbols-outlined text-[20px] text-primary">{{ m.icon }}</span>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-on-surface font-mono">{{ m.value }}</div>
+          <p class="text-xs text-emerald-700 font-medium mt-0.5">{{ m.delta }}</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Tarjeta de Desglose de Desafíos por Nivel -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-2 bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm p-6 space-y-4">
+      <h2 class="text-base font-bold text-on-surface">Distribución de Entrega de Desafíos</h2>
+      <p class="text-xs text-on-surface-variant">Evolución de completitud según nivel de complejidad PAR-01</p>
+      
+      <div class="space-y-3 pt-2">
+        <div>
+          <div class="flex justify-between text-xs font-medium mb-1">
+            <span>Básico (100 XP)</span>
+            <span class="font-mono font-bold text-emerald-700">96.4% completado</span>
+          </div>
+          <div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+            <div class="bg-emerald-500 h-full rounded-full" style="width: 96.4%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium mb-1">
+            <span>Medio (250 XP)</span>
+            <span class="font-mono font-bold text-primary">82.1% completado</span>
+          </div>
+          <div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+            <div class="bg-primary h-full rounded-full" style="width: 82.1%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium mb-1">
+            <span>Avanzado (500 XP)</span>
+            <span class="font-mono font-bold text-amber-700">64.8% completado</span>
+          </div>
+          <div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+            <div class="bg-amber-500 h-full rounded-full" style="width: 64.8%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm p-6 flex flex-col justify-between">
+      <div>
+        <h3 class="text-sm font-bold text-on-surface">Cumplimiento de SLA</h3>
+        <p class="text-xs text-on-surface-variant mt-1">Corrección automática vs revisión docente</p>
+        <div class="my-6 text-center">
+          <span class="text-4xl font-mono font-bold text-primary">99.4%</span>
+          <p class="text-xs text-on-surface-variant mt-1">Evaluaciones en &lt; 3 segundos</p>
+        </div>
+      </div>
+      <div class="p-3 bg-surface-container-low rounded-lg text-[11px] text-on-surface-variant">
+        Algoritmo de autocalificación calibrado por Golden Set conforme a norma ISO/IEC 42001.
+      </div>
+    </div>
+  </div>
+</div>
