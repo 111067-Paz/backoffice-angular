@@ -7,7 +7,7 @@
         <span class="text-xs text-outline">•</span>
         <span class="text-xs text-outline font-semibold text-primary">Tema 12 • FRC Core</span>
       </div>
-      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Motor de Parámetros Globales (PAR-01 a PAR-24)</h1>
+      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Motor de Parámetros Globales (PAR-01 a PAR-18)</h1>
       <p class="text-sm text-on-surface-variant mt-0.5">Catálogo único de economía gamificada, límites algorítmicos y políticas de retención institucional.</p>
     </div>
 
@@ -85,7 +85,7 @@
 
       <!-- Pills de Categorías -->
       <div class="flex flex-wrap items-center gap-2">
-        @for (cat of ['Todos los Parámetros (24)', 'Economía & Gamificación', 'Evaluación & IA', 'Seguridad & Plataforma']; track cat) {
+        @for (cat of ['Todos los Parámetros (18)', 'Economía & Gamificación', 'Evaluación & IA', 'Seguridad & Plataforma']; track cat) {
           <button
             (click)="selectCategory(cat)"
             [class.bg-primary]="selectedCategory() === cat"

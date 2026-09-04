@@ -18,11 +18,11 @@ El **Tema 12** es un **Consumidor Puro y Orquestador de Parámetros** sin domini
 ## 🧭 Las 9 Vistas de la SPA
 
 1. **Dashboard Consolidado (`/dashboard-consolidado`):** Gráfico semanal SVG de volumen transaccional, alertas del sistema por severidad y monitoreo de APIs.
-2. **Observabilidad Institucional (`/observabilidad-institucional`):** Los 4 KPIs del PRD (CSAT Global 86.4%, CSAT Cursos 82.1% con $N \ge 5$, Aprobación/Abandono 74.8%/8.4%, Promoción P90 8.9%), monitor de deriva LLM y feed de seguridad mitigada.
+2. **Observabilidad Institucional (`/observabilidad-institucional`):** Los 4 KPIs del PRD (CSAT Global 86.4%, CSAT Cursos 82.1% con N ≥ 5, Aprobación/Abandono 74.8%/8.4%, Promoción P90 8.9%), monitor de deriva LLM y feed de seguridad mitigada.
 3. **Gestión de Cátedras (`/gestion-catedras`):** Matriz de permisos a microservicios (1 al 6), Lista Blanca Docente (`RF-USR-02`) y catálogo de versiones de contratos OpenAPI.
 4. **Panel del Profesor (`/panel-profesor`):** Vista confidencial de cohorte (`RF-RPT-07`), Alumnos en Riesgo Académico (`RF-RPT-03`), SLA de datos en tiempo real (4 min), nómina anonimizada y exportación CSV (`RF-RNK-13`).
 5. **Reportes Analíticos (`/reportes-analiticos`):** Distribución de XP en 5 niveles, Donut de retención vs desafíos (88.3%) y rendimiento por asignatura.
-6. **Parámetros Globales (`/parametros-globales`):** Consola de negocio de los 24 parámetros (`PAR-01` a `PAR-24`), módulos consumidores e inmutabilidad hacia adelante (`RF-CFG-06`).
+6. **Parámetros Globales (`/parametros-globales`):** Consola de negocio de los 18 parámetros (`PAR-01` a `PAR-18`), módulos consumidores e inmutabilidad hacia adelante (`RF-CFG-06`).
 7. **Motor de Configuración (`/motor-configuracion`):** Estado de sincronización técnica en clúster y bitácora de auditoría forense `AdminAuditLog` (`RF-AUD-02`).
 8. **Gobernanza LLM (`/gobernanza-llm`):** Asignación inmutable del Evaluador Único Activo (`RF-IA-25`: Claude 3.5 Sonnet) y calibración ciega *Golden Set* en 5 dimensiones con tolerancia $\le \pm 5$ pts (`PAR-14`).
 9. **Salud y Trazabilidad (`/salud-trazabilidad`):** Bento cards con telemetría de CPU y latencia en tiempo real, junto a trazas distribuidas cross-service con Trace IDs.
