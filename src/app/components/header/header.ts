@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { LogoUtn } from '../logo-utn/logo-utn';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [LogoUtn],
   templateUrl: './header.html',
   styleUrl: './header.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

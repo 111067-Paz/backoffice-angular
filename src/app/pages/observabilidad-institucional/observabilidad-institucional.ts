@@ -5,7 +5,6 @@ export interface OfficialKpi {
   readonly category: string;
   readonly title: string;
   readonly value: string;
-  readonly subtext: string;
   readonly delta: string;
   readonly details: string;
   readonly badge: string;
