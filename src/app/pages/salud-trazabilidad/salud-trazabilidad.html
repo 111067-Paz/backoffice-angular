@@ -1,21 +1,21 @@
-<div class="p-8 space-y-8 max-w-7xl mx-auto">
-  <!-- Cabecera -->
+<div class="p-4 sm:p-8 space-y-8 max-w-7xl mx-auto">
+  <!-- Cabecera Arcade -->
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
     <div>
-      <div class="flex items-center gap-2 mb-1">
-        <span class="text-xs font-mono px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-semibold">MOD-09</span>
-        <span class="text-xs text-outline">•</span>
-        <span class="text-xs text-outline font-semibold text-primary">Tema 12 • FRC Core</span>
+      <div class="flex items-center gap-2 mb-1.5">
+        <span class="badge-pixel bg-arcade-orange/15 text-arcade-orange border border-arcade-orange/30">MOD-09</span>
+        <span class="text-arcade-ink/30">•</span>
+        <span class="text-xs font-bold text-arcade-orange font-mono tracking-wider">TEMA 12 • FRC CORE SRE</span>
       </div>
-      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Salud y Trazabilidad Distribuida</h1>
-      <p class="text-sm text-on-surface-variant mt-0.5">Topología de microservicios, latencia p99 y trazas de transacciones cross-service.</p>
+      <h1 class="text-2xl sm:text-3xl font-black font-sans text-arcade-ink tracking-tight">Salud y Trazabilidad Distribuida</h1>
+      <p class="text-xs sm:text-sm text-arcade-muted font-medium mt-1">Topología de microservicios, latencia p99 y trazas de transacciones cross-service.</p>
     </div>
 
     <div class="flex items-center gap-3">
       <button
         (click)="syncCaches()"
         [disabled]="isSyncing()"
-        class="bg-primary hover:bg-primary-container text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-2 transition-all shadow-sm disabled:opacity-50"
+        class="btn-arcade text-xs px-4 py-2.5 flex items-center gap-2 disabled:opacity-50"
       >
         <span class="material-symbols-outlined text-[16px]" [class.animate-spin]="isSyncing()">sync</span>
         <span>Sincronizar Cachés</span>
@@ -24,89 +24,96 @@
   </div>
 
   @if (feedback()) {
-    <div class="bg-primary-fixed/30 border border-primary/20 text-on-primary-fixed px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 animate-fadeIn">
-      <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+    <div class="card-arcade bg-arcade-green/10 border-2 border-arcade-green text-arcade-green p-3.5 flex items-center gap-2.5 text-xs font-bold animate-fadeIn">
+      <span class="material-symbols-outlined text-arcade-green text-[18px]">verified</span>
       <span>{{ feedback() }}</span>
     </div>
   }
 
-  <!-- Stats Grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <!-- Stats Grid Neo-Brutalist -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
     @for (s of stats(); track s.title) {
-      <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between hover:border-primary/40 transition-all">
+      <div class="card-arcade p-5 flex flex-col justify-between hover:translate-y-[-2px] transition-transform">
         <div class="flex items-center justify-between mb-3">
-          <span class="text-xs uppercase font-semibold text-outline tracking-wider">{{ s.title }}</span>
-          <span class="p-2 rounded-xl bg-surface-container-high text-primary material-symbols-outlined text-[20px]">{{ s.icon }}</span>
+          <span class="badge-pixel bg-arcade-gold/20 text-arcade-ink border border-arcade-ink/20">{{ s.title }}</span>
+          <span class="w-8 h-8 rounded-lg bg-arcade-gold/20 border-2 border-arcade-ink flex items-center justify-center text-arcade-ink material-symbols-outlined text-[18px]">{{ s.icon }}</span>
         </div>
         <div>
-          <div class="text-2xl font-bold text-on-surface font-mono">{{ s.value }}</div>
-          <p class="text-xs text-outline mt-1 font-medium">{{ s.sub }}</p>
+          <div class="text-2xl sm:text-3xl font-black font-pixel text-arcade-ink">{{ s.value }}</div>
+          <p class="text-[11px] text-arcade-muted mt-1 font-bold font-sans">{{ s.sub }}</p>
         </div>
       </div>
     }
   </div>
 
-  <!-- Topología de los 6 Microservicios (Bento Cards con CPU en Tiempo Real) -->
-  <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm p-6 space-y-4">
-    <div class="flex justify-between items-center pb-3 border-b border-surface-container-highest">
+  <!-- Topología de los 6 Microservicios (Bento Cards Arcade) -->
+  <div class="card-arcade p-6 space-y-4">
+    <div class="flex flex-col sm:flex-row justify-between sm:items-center pb-4 border-b-2 border-arcade-line gap-3">
       <div>
-        <h2 class="text-base font-bold text-on-surface">Topología de Microservicios Conectados</h2>
-        <p class="text-xs text-on-surface-variant">Estado de nodos, puertos y utilización de CPU reportados por Spring Boot Actuator</p>
+        <h2 class="text-base font-black font-sans text-arcade-ink tracking-tight flex items-center gap-2">
+          <span class="w-2.5 h-2.5 bg-arcade-green rounded-full border border-arcade-ink animate-pulse"></span>
+          Topología de Microservicios Conectados
+        </h2>
+        <p class="text-xs text-arcade-muted font-medium mt-0.5">Estado de nodos, puertos y utilización de CPU reportados por Spring Boot Actuator</p>
       </div>
-      <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
-        Auto-refresh activo (5s)
+      <span class="badge-pixel bg-arcade-green/20 text-arcade-green border border-arcade-green self-start sm:self-auto">
+        AUTO-REFRESH: 5S
       </span>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       @for (ms of microservices(); track ms.id) {
         <div
-          class="p-4 rounded-xl border transition-all space-y-3"
-          [class.bg-surface-container-low]="!ms.isDegraded"
-          [class.border-outline-variant/30]="!ms.isDegraded"
-          [class.bg-rose-50/40]="ms.isDegraded"
-          [class.border-rose-300]="ms.isDegraded"
+          class="p-4 rounded-xl border-2 transition-all space-y-3"
+          [class.bg-arcade-paper]="!ms.isDegraded"
+          [class.border-arcade-ink]="!ms.isDegraded"
+          [class.shadow-[3px_3px_0_#292738]]="!ms.isDegraded"
+          [class.bg-arcade-coral/15]="ms.isDegraded"
+          [class.border-arcade-coral]="ms.isDegraded"
+          [class.shadow-[3px_3px_0_#f47b77]]="ms.isDegraded"
         >
           <div class="flex items-start justify-between">
             <div>
-              <div class="text-xs font-bold text-on-surface flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full" [class.bg-emerald-500]="!ms.isDegraded" [class.bg-rose-500]="ms.isDegraded"></span>
+              <div class="text-xs font-black text-arcade-ink flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full border border-arcade-ink" [class.bg-arcade-green]="!ms.isDegraded" [class.bg-arcade-coral]="ms.isDegraded"></span>
                 <span>{{ ms.name }}</span>
               </div>
-              <div class="text-[10px] text-outline font-mono mt-0.5">{{ ms.hostname }} :{{ ms.port }}</div>
+              <div class="text-[10px] text-arcade-muted font-mono mt-1 font-semibold">{{ ms.hostname }} :{{ ms.port }}</div>
             </div>
             <span
-              class="px-2 py-0.5 rounded text-[10px] font-mono font-bold"
-              [class.bg-emerald-50]="!ms.isDegraded"
-              [class.text-emerald-800]="!ms.isDegraded"
-              [class.bg-rose-100]="ms.isDegraded"
-              [class.text-rose-800]="ms.isDegraded"
+              class="badge-pixel text-[10px]"
+              [class.bg-arcade-green/20]="!ms.isDegraded"
+              [class.text-arcade-green]="!ms.isDegraded"
+              [class.border-arcade-green]="!ms.isDegraded"
+              [class.bg-arcade-coral/20]="ms.isDegraded"
+              [class.text-arcade-coral]="ms.isDegraded"
+              [class.border-arcade-coral]="ms.isDegraded"
             >
-              {{ ms.httpStatus }} {{ ms.isDegraded ? 'Timeout' : 'OK' }}
+              {{ ms.httpStatus }} {{ ms.isDegraded ? 'TIMEOUT' : 'ONLINE' }}
             </span>
           </div>
 
           <!-- Métricas de latencia y CPU -->
           <div class="space-y-2 pt-1">
             <div class="flex justify-between text-xs font-mono">
-              <span class="text-outline">Latencia:</span>
-              <span class="font-bold text-on-surface">{{ ms.latency }}</span>
+              <span class="text-arcade-muted font-bold">Latencia:</span>
+              <span class="font-black text-arcade-ink">{{ ms.latency }}</span>
             </div>
 
             <div class="space-y-1">
-              <div class="flex justify-between text-[10px] font-mono">
-                <span class="text-outline">Carga de CPU</span>
-                <span [class.text-rose-600]="ms.cpuPercent > 80" [class.font-bold]="ms.cpuPercent > 80">
+              <div class="flex justify-between text-[10px] font-mono font-bold">
+                <span class="text-arcade-muted">Carga de CPU</span>
+                <span [class.text-arcade-coral]="ms.cpuPercent > 80" [class.text-arcade-ink]="ms.cpuPercent <= 80">
                   {{ ms.cpuPercent }}%
                 </span>
               </div>
-              <div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+              <div class="w-full bg-arcade-line h-2 rounded-full overflow-hidden border border-arcade-ink/20">
                 <div
                   class="h-full rounded-full transition-all duration-500"
                   [style.width.%]="ms.cpuPercent"
-                  [class.bg-primary]="ms.cpuPercent < 70"
-                  [class.bg-amber-500]="ms.cpuPercent >= 70 && ms.cpuPercent < 90"
-                  [class.bg-rose-600]="ms.cpuPercent >= 90"
+                  [class.bg-arcade-green]="ms.cpuPercent < 70"
+                  [class.bg-arcade-gold]="ms.cpuPercent >= 70 && ms.cpuPercent < 90"
+                  [class.bg-arcade-coral]="ms.cpuPercent >= 90"
                 ></div>
               </div>
             </div>
@@ -117,31 +124,31 @@
   </div>
 
   <!-- Sección: Trazas de Transacciones Cross-Service -->
-  <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden">
-    <div class="p-6 border-b border-surface-container-highest flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4">
+  <div class="card-arcade overflow-hidden">
+    <div class="p-6 border-b-2 border-arcade-line flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 bg-arcade-paper">
       <div>
-        <h2 class="text-base font-bold text-on-surface">Trazas de Transacciones Cross-Service</h2>
-        <p class="text-xs text-on-surface-variant">Correlation IDs de extremo a extremo propagados entre API Gateway y Apache Kafka.</p>
+        <h2 class="text-base font-black font-sans text-arcade-ink tracking-tight">Trazas de Transacciones Cross-Service</h2>
+        <p class="text-xs text-arcade-muted font-medium mt-0.5">Correlation IDs de extremo a extremo propagados entre API Gateway y Apache Kafka.</p>
       </div>
 
       <div class="flex flex-wrap items-center gap-3">
         <div class="relative flex-1 sm:w-64">
-          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[16px]">search</span>
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-arcade-muted text-[16px]">search</span>
           <input
             type="text"
             [value]="searchTerm()"
             (input)="onSearch($event)"
             placeholder="Buscar por Trace ID o endpoint..."
-            class="w-full pl-9 pr-4 py-2 bg-surface-container-high rounded-xl text-xs text-on-surface placeholder:text-outline border-none focus:ring-2 focus:ring-primary"
+            class="w-full pl-9 pr-4 py-2 bg-white rounded-lg text-xs font-mono text-arcade-ink placeholder:text-arcade-muted border-2 border-arcade-ink focus:outline-none focus:ring-2 focus:ring-arcade-orange"
           />
         </div>
 
         <div class="flex items-center gap-2">
-          <span class="text-xs text-outline font-medium">Estado:</span>
+          <span class="text-xs text-arcade-ink font-bold">Estado:</span>
           <select
             [value]="selectedStatusFilter()"
             (change)="onSelectStatus($event)"
-            class="bg-surface-container-high rounded-xl text-xs px-3 py-2 text-on-surface border-none focus:ring-2 focus:ring-primary font-medium"
+            class="bg-white rounded-lg text-xs px-3 py-2 text-arcade-ink border-2 border-arcade-ink font-bold focus:outline-none focus:ring-2 focus:ring-arcade-orange"
           >
             <option value="Todos">Todos los Estados</option>
             <option value="200">200 OK</option>
@@ -154,41 +161,43 @@
     <!-- Tabla de Trazas -->
     <div class="overflow-x-auto">
       <table class="w-full text-left text-xs">
-        <thead class="bg-surface-container-low text-on-surface-variant font-semibold border-b border-surface-container-highest">
+        <thead class="bg-arcade-gold/20 text-arcade-ink font-black border-b-2 border-arcade-line font-pixel text-[10px]">
           <tr>
             <th class="py-3.5 px-4">Trace ID</th>
-            <th class="py-3.5 px-4">Flujo de Microservicios Involucrados</th>
+            <th class="py-3.5 px-4">Flujo Cross-Service</th>
             <th class="py-3.5 px-4">Endpoint Solicitado</th>
             <th class="py-3.5 px-4 text-center">Estado HTTP</th>
             <th class="py-3.5 px-4 text-right">Latencia Total</th>
             <th class="py-3.5 px-4 text-right">Timestamp</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-surface-container-highest font-mono">
+        <tbody class="divide-y-2 divide-arcade-line font-mono">
           @for (tr of filteredTraces(); track tr.traceId) {
-            <tr class="hover:bg-surface-container-low transition-colors">
-              <td class="py-3.5 px-4 font-bold text-primary">{{ tr.traceId }}</td>
-              <td class="py-3.5 px-4 font-sans font-medium text-on-surface">{{ tr.flow }}</td>
-              <td class="py-3.5 px-4 text-on-surface-variant">{{ tr.endpoint }}</td>
-              <td class="py-3.5 px-4 text-center font-sans">
+            <tr class="hover:bg-arcade-gold/10 transition-colors">
+              <td class="py-3.5 px-4 font-black text-arcade-orange">{{ tr.traceId }}</td>
+              <td class="py-3.5 px-4 font-sans font-bold text-arcade-ink">{{ tr.flow }}</td>
+              <td class="py-3.5 px-4 text-arcade-muted font-mono">{{ tr.endpoint }}</td>
+              <td class="py-3.5 px-4 text-center">
                 <span
-                  class="px-2 py-0.5 rounded-full text-[11px] font-semibold font-mono"
-                  [class.bg-emerald-50]="tr.httpStatus === 200"
-                  [class.text-emerald-700]="tr.httpStatus === 200"
-                  [class.bg-rose-50]="tr.httpStatus !== 200"
-                  [class.text-rose-700]="tr.httpStatus !== 200"
+                  class="badge-pixel text-[10px]"
+                  [class.bg-arcade-green/20]="tr.httpStatus === 200"
+                  [class.text-arcade-green]="tr.httpStatus === 200"
+                  [class.border-arcade-green]="tr.httpStatus === 200"
+                  [class.bg-arcade-coral/20]="tr.httpStatus !== 200"
+                  [class.text-arcade-coral]="tr.httpStatus !== 200"
+                  [class.border-arcade-coral]="tr.httpStatus !== 200"
                 >
                   {{ tr.httpStatus }}
                 </span>
               </td>
-              <td class="py-3.5 px-4 text-right font-bold" [class.text-rose-600]="tr.httpStatus !== 200" [class.text-on-surface]="tr.httpStatus === 200">
+              <td class="py-3.5 px-4 text-right font-black" [class.text-arcade-coral]="tr.httpStatus !== 200" [class.text-arcade-ink]="tr.httpStatus === 200">
                 {{ tr.totalLatency }}
               </td>
-              <td class="py-3.5 px-4 text-right text-outline font-sans text-[11px]">{{ tr.timestamp }}</td>
+              <td class="py-3.5 px-4 text-right text-arcade-muted font-sans font-medium text-[11px]">{{ tr.timestamp }}</td>
             </tr>
           } @empty {
             <tr>
-              <td colspan="6" class="py-8 text-center text-outline font-sans">
+              <td colspan="6" class="py-8 text-center text-arcade-muted font-sans font-bold">
                 No se encontraron trazas con los filtros seleccionados
               </td>
             </tr>
@@ -198,15 +207,15 @@
     </div>
 
     <!-- Paginación -->
-    <div class="flex flex-col sm:flex-row justify-between items-center px-6 py-4 border-t border-surface-container-highest gap-4 font-sans">
-      <span class="text-xs text-on-surface-variant">Mostrando {{ filteredTraces().length }} de 1,420 trazas recientes</span>
+    <div class="flex flex-col sm:flex-row justify-between items-center px-6 py-4 border-t-2 border-arcade-line gap-4 bg-arcade-paper">
+      <span class="text-xs text-arcade-muted font-bold font-mono">Mostrando {{ filteredTraces().length }} de 1,420 trazas recientes</span>
       <div class="flex items-center gap-1.5">
-        <button class="px-3 py-1.5 bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg text-xs font-medium disabled:opacity-50" disabled>
+        <button class="btn-arcade-secondary text-xs px-3 py-1.5 disabled:opacity-50" disabled>
           Anterior
         </button>
-        <button class="px-3 py-1.5 bg-primary text-white rounded-lg text-xs font-medium">1</button>
-        <button class="px-3 py-1.5 bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg text-xs font-medium">2</button>
-        <button class="px-3 py-1.5 bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg text-xs font-medium">
+        <button class="btn-arcade text-xs px-3 py-1.5">1</button>
+        <button class="btn-arcade-secondary text-xs px-3 py-1.5">2</button>
+        <button class="btn-arcade-secondary text-xs px-3 py-1.5">
           Siguiente
         </button>
       </div>

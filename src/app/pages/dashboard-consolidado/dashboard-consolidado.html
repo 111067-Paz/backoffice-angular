@@ -3,23 +3,23 @@
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
     <div>
       <div class="flex items-center gap-2 mb-1">
-        <span class="text-xs font-mono px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-semibold">MOD-01</span>
-        <span class="text-xs text-outline">•</span>
-        <span class="text-xs text-outline">Panel General & Operativo</span>
+        <span class="badge-pixel bg-[#f6c66a] text-[#292738] border border-[#292738] shadow-[1px_1px_0_#292738]">MOD-01</span>
+        <span class="text-xs text-[#88828a]">•</span>
+        <span class="font-pixel text-[10px] text-[#88828a] tracking-wider">PANEL GENERAL & OPERATIVO</span>
       </div>
-      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Dashboard Consolidado</h1>
-      <p class="text-sm text-on-surface-variant mt-0.5">Monitoreo en tiempo real de microservicios, flujo académico y trazabilidad FRC.</p>
+      <h1 class="text-3xl font-black text-[#292738] tracking-tight font-sans">Dashboard Consolidado</h1>
+      <p class="text-xs text-[#88828a] mt-0.5 font-sans font-medium">Monitoreo en tiempo real de microservicios, flujo académico y trazabilidad FRC.</p>
     </div>
     
     <div class="flex items-center gap-3">
-      <div class="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-xl text-xs text-on-surface-variant font-medium">
-        <span class="material-symbols-outlined text-[16px]">calendar_today</span>
-        <span>Ciclo Lectivo 2026 - Q1</span>
+      <div class="flex items-center gap-2 bg-white border-2 border-[#292738] shadow-[2px_2px_0_#292738] px-3.5 py-2 rounded text-xs text-[#292738] font-bold">
+        <span class="material-symbols-outlined text-[16px] text-[#e66d45]">calendar_today</span>
+        <span class="font-pixel text-[10px]">CICLO LECTIVO 2026 - Q1</span>
       </div>
       <button
         (click)="forceSync()"
         [disabled]="isSyncing()"
-        class="bg-primary hover:bg-primary-container text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-2 transition-all shadow-sm disabled:opacity-50"
+        class="btn-arcade text-xs px-4 py-2 rounded font-sans"
       >
         <span class="material-symbols-outlined text-[16px]" [class.animate-spin]="isSyncing()">sync</span>
         <span>{{ isSyncing() ? 'Sincronizando...' : 'Forzar Sincronización' }}</span>
@@ -28,35 +28,35 @@
   </div>
 
   @if (syncMessage()) {
-    <div class="bg-primary-fixed/30 border border-primary/20 text-on-primary-fixed px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 animate-fadeIn">
-      <span class="material-symbols-outlined text-primary text-[18px]">info</span>
-      <span>{{ syncMessage() }}</span>
+    <div class="bg-[#fef9ee] border-2 border-[#f6c66a] shadow-[3px_3px_0_#f6c66a] text-[#292738] px-4 py-2.5 rounded text-xs flex items-center gap-2">
+      <span class="material-symbols-outlined text-[#e66d45] text-[18px]">info</span>
+      <span class="font-medium">{{ syncMessage() }}</span>
     </div>
   }
 
   @if (toastAlerts()) {
-    <div class="bg-amber-50 border border-amber-200 text-amber-800 px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 animate-fadeIn">
-      <span class="material-symbols-outlined text-amber-600 text-[18px]">notification_important</span>
-      <span>{{ toastAlerts() }}</span>
+    <div class="bg-[#fdf2f1] border-2 border-[#f47b77] shadow-[3px_3px_0_#f47b77] text-[#292738] px-4 py-2.5 rounded text-xs flex items-center gap-2">
+      <span class="material-symbols-outlined text-[#f47b77] text-[18px]">notification_important</span>
+      <span class="font-medium">{{ toastAlerts() }}</span>
     </div>
   }
 
-  <!-- Bento Grid KPIs -->
+  <!-- Bento Grid KPIs Arcade -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     @for (kpi of kpis(); track kpi.title) {
-      <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between hover:border-primary/40 transition-all">
+      <div class="card-arcade p-5 rounded-lg flex flex-col justify-between">
         <div class="flex items-center justify-between mb-4">
-          <span class="text-xs font-semibold text-outline uppercase tracking-wider">{{ kpi.title }}</span>
-          <span class="p-2 rounded-xl bg-surface-container-high text-primary material-symbols-outlined text-[20px]">{{ kpi.icon }}</span>
+          <span class="text-[11px] font-bold text-[#88828a] uppercase tracking-wider font-sans">{{ kpi.title }}</span>
+          <span class="p-2 rounded border-2 border-[#292738] bg-[#f6c66a] text-[#292738] shadow-[2px_2px_0_#292738] material-symbols-outlined text-[20px]">{{ kpi.icon }}</span>
         </div>
         <div>
-          <div class="text-3xl font-bold text-on-surface font-mono tracking-tight">{{ kpi.value }}</div>
-          <div class="flex items-center justify-between mt-2 pt-2 border-t border-surface-container-highest">
-            <span class="text-[11px] font-semibold text-emerald-700 flex items-center gap-0.5">
+          <div class="text-3xl font-black text-[#292738] font-mono tracking-tight">{{ kpi.value }}</div>
+          <div class="flex items-center justify-between mt-3 pt-2.5 border-t border-[#e3ded5]">
+            <span class="text-[11px] font-bold text-[#378260] flex items-center gap-0.5 font-pixel">
               <span class="material-symbols-outlined text-[14px]">trending_up</span>
               {{ kpi.delta }}
             </span>
-            <span class="text-[11px] text-outline font-mono">{{ kpi.api }}</span>
+            <span class="badge-pixel bg-[#faf7f2] text-[#292738] border border-[#e3ded5] text-[9px]">{{ kpi.api }}</span>
           </div>
         </div>
       </div>
@@ -66,37 +66,46 @@
   <!-- Middle Grid: Gráfico de Actividad Semanal (2 cols) + Alertas del Sistema (1 col) -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <!-- Gráfico Actividad Semanal Cross-Servicio (2 columnas) -->
-    <div class="lg:col-span-2 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+    <div class="lg:col-span-2 card-arcade p-6 rounded-lg flex flex-col justify-between">
       <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-          <h2 class="text-base font-bold text-on-surface tracking-tight">Actividad Semanal Cross-Servicio</h2>
-          <p class="text-xs text-on-surface-variant">Volumen de invocaciones REST y eventos Kafka procesados en campus</p>
+          <h2 class="text-base font-bold text-[#292738] tracking-tight font-sans">Actividad Semanal Cross-Servicio</h2>
+          <p class="text-xs text-[#88828a] font-sans">Volumen de invocaciones REST y eventos Kafka procesados en campus</p>
         </div>
-        <div class="flex items-center gap-1 bg-surface-container-high p-1 rounded-lg text-xs font-medium">
+        <div class="flex items-center gap-1.5 bg-[#f4eddf] p-1 border-2 border-[#292738] rounded shadow-[2px_2px_0_#292738] text-xs font-medium">
           <button
             (click)="setTimeRange('7d')"
-            [class.bg-white]="timeRange() === '7d'"
-            [class.text-primary]="timeRange() === '7d'"
-            [class.shadow-xs]="timeRange() === '7d'"
-            class="px-3 py-1 rounded-md text-on-surface-variant transition-all hover:text-on-surface"
+            [class.bg-[#f6c66a]]="timeRange() === '7d'"
+            [class.text-[#292738]]="timeRange() === '7d'"
+            [class.border-2]="timeRange() === '7d'"
+            [class.border-[#292738]]="timeRange() === '7d'"
+            [class.shadow-[1px_1px_0_#292738]]="timeRange() === '7d'"
+            [class.font-bold]="timeRange() === '7d'"
+            class="px-2.5 py-0.5 rounded text-xs text-[#292738] font-sans transition-all"
           >
             7 Días
           </button>
           <button
             (click)="setTimeRange('30d')"
-            [class.bg-white]="timeRange() === '30d'"
-            [class.text-primary]="timeRange() === '30d'"
-            [class.shadow-xs]="timeRange() === '30d'"
-            class="px-3 py-1 rounded-md text-on-surface-variant transition-all hover:text-on-surface"
+            [class.bg-[#f6c66a]]="timeRange() === '30d'"
+            [class.text-[#292738]]="timeRange() === '30d'"
+            [class.border-2]="timeRange() === '30d'"
+            [class.border-[#292738]]="timeRange() === '30d'"
+            [class.shadow-[1px_1px_0_#292738]]="timeRange() === '30d'"
+            [class.font-bold]="timeRange() === '30d'"
+            class="px-2.5 py-0.5 rounded text-xs text-[#292738] font-sans transition-all"
           >
             30 Días
           </button>
           <button
             (click)="setTimeRange('year')"
-            [class.bg-white]="timeRange() === 'year'"
-            [class.text-primary]="timeRange() === 'year'"
-            [class.shadow-xs]="timeRange() === 'year'"
-            class="px-3 py-1 rounded-md text-on-surface-variant transition-all hover:text-on-surface"
+            [class.bg-[#f6c66a]]="timeRange() === 'year'"
+            [class.text-[#292738]]="timeRange() === 'year'"
+            [class.border-2]="timeRange() === 'year'"
+            [class.border-[#292738]]="timeRange() === 'year'"
+            [class.shadow-[1px_1px_0_#292738]]="timeRange() === 'year'"
+            [class.font-bold]="timeRange() === 'year'"
+            class="px-2.5 py-0.5 rounded text-xs text-[#292738] font-sans transition-all"
           >
             Año
           </button>
@@ -104,91 +113,96 @@
       </div>
 
       <!-- Gráfico de barras SVG / HTML -->
-      <div class="h-56 flex items-end justify-between gap-3 pt-6 pb-2 px-2 border-b border-surface-container-highest">
+      <div class="h-56 flex items-end justify-between gap-3 pt-6 pb-2 px-2 border-b-2 border-[#e3ded5]">
         @for (item of weeklyActivity(); track item.day) {
           <div class="flex-1 flex flex-col items-center gap-2 group relative">
             <!-- Tooltip en hover -->
-            <div class="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-inverse-on-surface text-[10px] px-2 py-1 rounded shadow pointer-events-none whitespace-nowrap z-10 font-mono">
+            <div class="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-[#292738] text-white text-[10px] px-2 py-1 rounded shadow-[2px_2px_0_#13121f] pointer-events-none whitespace-nowrap z-10 font-mono">
               {{ item.date }}: {{ item.value }} reqs
             </div>
-            <!-- Barra con altura relativa -->
-            <div class="w-full max-w-[36px] bg-surface-container-high rounded-t-md relative overflow-hidden flex items-end h-44">
+            <!-- Barra con altura relativa y estilo 3D arcade -->
+            <div class="w-full max-w-[36px] bg-[#f4eddf] border border-[#e3ded5] rounded-t relative overflow-hidden flex items-end h-44">
               <div
-                class="w-full rounded-t-md transition-all duration-500"
+                class="w-full rounded-t transition-all duration-500 border-t-2 border-x-2"
                 [style.height.%]="item.heightPercent"
-                [class.bg-primary]="!item.isPeak"
-                [class.bg-primary-container]="item.isPeak"
+                [class.bg-[#e66d45]]="!item.isPeak"
+                [class.border-[#9e472d]]="!item.isPeak"
+                [class.bg-[#f6c66a]]="item.isPeak"
+                [class.border-[#d78a31]]="item.isPeak"
               ></div>
             </div>
             <!-- Label del día -->
-            <span class="text-[11px] font-medium" [class.text-primary]="item.isPeak" [class.font-bold]="item.isPeak" [class.text-outline]="!item.isPeak">
+            <span class="text-[11px] font-medium font-pixel" [class.text-[#e66d45]]="item.isPeak" [class.font-bold]="item.isPeak" [class.text-[#88828a]]="!item.isPeak">
               {{ item.day }}
             </span>
           </div>
         }
       </div>
 
-      <div class="flex flex-wrap items-center justify-between gap-4 mt-4 pt-2 text-xs text-on-surface-variant">
+      <div class="flex flex-wrap items-center justify-between gap-4 mt-4 pt-2 text-xs text-[#88828a]">
         <div class="flex items-center gap-4">
           <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-sm bg-primary"></span>
-            <span>Consultas API Gateway</span>
+            <span class="w-3 h-3 rounded-sm bg-[#e66d45] border border-[#9e472d]"></span>
+            <span class="font-sans font-medium text-[#292738]">Consultas API Gateway</span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-sm bg-primary-container"></span>
-            <span>Tráfico Histórico Promedio</span>
+            <span class="w-3 h-3 rounded-sm bg-[#f6c66a] border border-[#d78a31]"></span>
+            <span class="font-sans font-medium text-[#292738]">Pico Semanal Histórico</span>
           </div>
         </div>
-        <div class="font-mono text-xs font-semibold text-primary">
+        <div class="font-mono text-xs font-bold text-[#e66d45]">
           Pico máx: 9,842 req/min
         </div>
       </div>
     </div>
 
     <!-- Panel de Alertas del Sistema (1 columna) -->
-    <div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+    <div class="card-arcade p-6 rounded-lg flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-secondary text-[20px]">notifications_active</span>
-            <h2 class="text-base font-bold text-on-surface tracking-tight">Alertas del Sistema</h2>
+            <span class="material-symbols-outlined text-[#e66d45] text-[20px]">notifications_active</span>
+            <h2 class="text-base font-bold text-[#292738] tracking-tight font-sans">Alertas del Sistema</h2>
           </div>
-          <span class="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-800">2 Avisos</span>
+          <span class="badge-pixel bg-[#f6c66a] text-[#292738] border border-[#292738] shadow-[1px_1px_0_#292738]">2 AVISOS</span>
         </div>
-        <p class="text-xs text-on-surface-variant mb-4">Eventos operacionales detectados en clúster FRC</p>
+        <p class="text-xs text-[#88828a] mb-4 font-sans">Eventos operacionales detectados en clúster FRC</p>
 
         <div class="space-y-3">
           @for (alert of alerts(); track alert.id) {
             <div
-              class="p-3.5 rounded-xl border transition-all hover:bg-surface-container-low"
-              [class.bg-amber-50]="alert.severity === 'warning'"
-              [class.border-amber-200]="alert.severity === 'warning'"
-              [class.bg-surface-container-low]="alert.severity === 'info'"
-              [class.border-outline-variant]="alert.severity === 'info'"
-              [class.bg-emerald-50]="alert.severity === 'success'"
-              [class.border-emerald-200]="alert.severity === 'success'"
+              class="p-3.5 rounded border-2 transition-all"
+              [class.bg-[#fef9ee]]="alert.severity === 'warning'"
+              [class.border-[#f6c66a]]="alert.severity === 'warning'"
+              [class.shadow-[2px_2px_0_#f6c66a]]="alert.severity === 'warning'"
+              [class.bg-white]="alert.severity === 'info'"
+              [class.border-[#e3ded5]]="alert.severity === 'info'"
+              [class.shadow-[2px_2px_0_#e3ded5]]="alert.severity === 'info'"
+              [class.bg-[#edf6f1]]="alert.severity === 'success'"
+              [class.border-[#378260]]="alert.severity === 'success'"
+              [class.shadow-[2px_2px_0_#378260]]="alert.severity === 'success'"
             >
               <div class="flex items-center justify-between mb-1">
                 <span
-                  class="text-xs font-bold"
-                  [class.text-amber-800]="alert.severity === 'warning'"
-                  [class.text-on-surface]="alert.severity === 'info'"
-                  [class.text-emerald-800]="alert.severity === 'success'"
+                  class="text-xs font-bold font-sans"
+                  [class.text-[#9e472d]]="alert.severity === 'warning'"
+                  [class.text-[#292738]]="alert.severity === 'info'"
+                  [class.text-[#20533c]]="alert.severity === 'success'"
                 >
                   {{ alert.title }}
                 </span>
-                <span class="text-[10px] text-outline font-mono">{{ alert.timeAgo }}</span>
+                <span class="text-[10px] text-[#88828a] font-mono">{{ alert.timeAgo }}</span>
               </div>
-              <p class="text-xs text-on-surface-variant leading-relaxed">{{ alert.description }}</p>
+              <p class="text-xs text-[#292738] leading-relaxed font-sans">{{ alert.description }}</p>
             </div>
           }
         </div>
       </div>
 
-      <div class="mt-4 pt-4 border-t border-surface-container-highest">
+      <div class="mt-4 pt-4 border-t-2 border-[#e3ded5]">
         <button
           (click)="viewAllAlerts()"
-          class="w-full text-center py-2 px-3 rounded-xl border border-outline-variant/50 hover:bg-surface-container text-xs font-semibold text-primary flex items-center justify-center gap-1 transition-colors"
+          class="btn-arcade-secondary w-full text-center py-2 px-3 rounded text-xs font-bold font-sans"
         >
           <span>Ver Todas las Alertas (14)</span>
           <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -198,24 +212,24 @@
   </div>
 
   <!-- Tabla de Transacciones Cross-Microservicio -->
-  <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden">
-    <div class="p-6 border-b border-surface-container-highest flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+  <div class="card-arcade rounded-lg overflow-hidden">
+    <div class="p-6 border-b-2 border-[#e3ded5] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-[#faf7f2]">
       <div>
-        <h2 class="text-base font-bold text-on-surface">Transacciones Recientes Cross-Microservicio</h2>
-        <p class="text-xs text-on-surface-variant">Auditoría at-least-once y trazabilidad Kafka con idempotencia.</p>
+        <h2 class="text-base font-bold text-[#292738] font-sans">Transacciones Recientes Cross-Microservicio</h2>
+        <p class="text-xs text-[#88828a] font-sans">Auditoría at-least-once y trazabilidad Kafka con idempotencia.</p>
       </div>
       <div class="flex items-center gap-3 w-full sm:w-auto">
         <div class="relative flex-1 sm:w-64">
-          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[16px]">search</span>
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#88828a] text-[16px]">search</span>
           <input
             type="text"
             [value]="searchTerm()"
             (input)="onSearch($event)"
             placeholder="Buscar por ID, origen o evento..."
-            class="w-full pl-9 pr-4 py-2 bg-surface-container-high rounded-xl text-xs text-on-surface placeholder:text-outline border-none focus:ring-2 focus:ring-primary"
+            class="w-full pl-9 pr-4 py-1.5 bg-white border-2 border-[#292738] rounded shadow-[2px_2px_0_#292738] text-xs text-[#292738] placeholder:text-[#88828a] focus:outline-none font-sans"
           />
         </div>
-        <button class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-1.5 transition-colors">
+        <button class="btn-arcade-secondary text-xs font-bold px-3 py-1.5 rounded font-sans flex items-center gap-1.5">
           <span class="material-symbols-outlined text-[16px]">filter_list</span>
           <span>Filtrar</span>
         </button>
@@ -224,42 +238,46 @@
 
     <div class="overflow-x-auto">
       <table class="w-full text-left text-xs">
-        <thead class="bg-surface-container-low text-on-surface-variant font-semibold border-b border-surface-container-highest">
+        <thead class="bg-[#292738] text-white font-pixel text-[10px] tracking-wider border-b-2 border-[#292738]">
           <tr>
-            <th class="py-3.5 px-4">ID Transacción</th>
-            <th class="py-3.5 px-4">Origen</th>
-            <th class="py-3.5 px-4">Destino</th>
-            <th class="py-3.5 px-4">Acción / Evento</th>
-            <th class="py-3.5 px-4">Estado</th>
-            <th class="py-3.5 px-4">Timestamp (UTC)</th>
-            <th class="py-3.5 px-4 text-right">Latencia</th>
+            <th class="py-3 px-4">ID TRANSACCIÓN</th>
+            <th class="py-3 px-4">ORIGEN</th>
+            <th class="py-3 px-4">DESTINO</th>
+            <th class="py-3 px-4">ACCIÓN / EVENTO</th>
+            <th class="py-3 px-4">ESTADO</th>
+            <th class="py-3 px-4">TIMESTAMP (UTC)</th>
+            <th class="py-3 px-4 text-right">LATENCIA</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-surface-container-highest">
+        <tbody class="divide-y divide-[#e3ded5]">
           @for (trx of filteredTransactions(); track trx.id) {
-            <tr class="hover:bg-surface-container-low transition-colors">
-              <td class="py-3.5 px-4 font-mono text-primary font-medium">{{ trx.id }}</td>
-              <td class="py-3.5 px-4 font-medium text-on-surface">{{ trx.origin }}</td>
-              <td class="py-3.5 px-4 font-medium text-on-surface">{{ trx.destination }}</td>
-              <td class="py-3.5 px-4 text-on-surface-variant">{{ trx.action }}</td>
+            <tr class="hover:bg-[#faf7f2] transition-colors">
+              <td class="py-3.5 px-4 font-mono text-[#e66d45] font-bold">{{ trx.id }}</td>
+              <td class="py-3.5 px-4 font-bold text-[#292738] font-sans">{{ trx.origin }}</td>
+              <td class="py-3.5 px-4 font-bold text-[#292738] font-sans">{{ trx.destination }}</td>
+              <td class="py-3.5 px-4 text-[#292738] font-sans">{{ trx.action }}</td>
               <td class="py-3.5 px-4">
                 <span
-                  class="inline-flex items-center px-2 py-0.5 rounded-full font-medium text-[11px]"
-                  [class.bg-emerald-50]="trx.status === 'Completado'"
-                  [class.text-emerald-700]="trx.status === 'Completado'"
-                  [class.bg-amber-50]="trx.status === 'Reintentando'"
-                  [class.text-amber-700]="trx.status === 'Reintentando'"
+                  class="badge-pixel"
+                  [class.bg-[#edf6f1]]="trx.status === 'Completado'"
+                  [class.text-[#378260]]="trx.status === 'Completado'"
+                  [class.border]="trx.status === 'Completado'"
+                  [class.border-[#378260]]="trx.status === 'Completado'"
+                  [class.bg-[#fef9ee]]="trx.status === 'Reintentando'"
+                  [class.text-[#d78a31]]="trx.status === 'Reintentando'"
+                  [class.border]="trx.status === 'Reintentando'"
+                  [class.border-[#d78a31]]="trx.status === 'Reintentando'"
                 >
                   {{ trx.status }}
                 </span>
               </td>
-              <td class="py-3.5 px-4 font-mono text-on-surface-variant">{{ trx.timestamp }}</td>
-              <td class="py-3.5 px-4 text-right font-mono font-medium">{{ trx.latency }}</td>
+              <td class="py-3.5 px-4 font-mono text-[#88828a]">{{ trx.timestamp }}</td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-[#292738]">{{ trx.latency }}</td>
             </tr>
           } @empty {
             <tr>
-              <td colspan="7" class="py-8 text-center text-outline">
-                No se encontraron transacciones con el criterio de búsqueda especificado
+              <td colspan="7" class="py-8 text-center text-[#88828a] font-pixel text-xs">
+                NO SE ENCONTRARON TRANSACCIONES CON EL CRITERIO ESPECIFICADO
               </td>
             </tr>
           }
@@ -268,16 +286,16 @@
     </div>
 
     <!-- Table Pagination Footer -->
-    <div class="flex flex-col sm:flex-row justify-between items-center px-6 py-4 border-t border-surface-container-highest gap-4">
-      <span class="text-xs text-on-surface-variant">Mostrando {{ filteredTransactions().length }} de 14,820 transacciones registradas hoy</span>
-      <div class="flex items-center gap-1.5">
-        <button class="px-3 py-1.5 bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg text-xs font-medium disabled:opacity-50" disabled>
+    <div class="flex flex-col sm:flex-row justify-between items-center px-6 py-4 border-t-2 border-[#e3ded5] bg-[#faf7f2] gap-4">
+      <span class="text-xs text-[#88828a] font-sans font-medium">Mostrando {{ filteredTransactions().length }} de 14,820 transacciones registradas hoy</span>
+      <div class="flex items-center gap-2">
+        <button class="btn-arcade-secondary px-3 py-1 rounded text-xs font-sans disabled:opacity-40" disabled>
           Anterior
         </button>
-        <button class="px-3 py-1.5 bg-primary text-white rounded-lg text-xs font-medium">1</button>
-        <button class="px-3 py-1.5 bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg text-xs font-medium">2</button>
-        <button class="px-3 py-1.5 bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg text-xs font-medium">3</button>
-        <button class="px-3 py-1.5 bg-surface-container-low hover:bg-surface-container text-on-surface rounded-lg text-xs font-medium">
+        <button class="btn-arcade px-3 py-1 rounded text-xs font-sans font-bold">1</button>
+        <button class="btn-arcade-secondary px-3 py-1 rounded text-xs font-sans">2</button>
+        <button class="btn-arcade-secondary px-3 py-1 rounded text-xs font-sans">3</button>
+        <button class="btn-arcade-secondary px-3 py-1 rounded text-xs font-sans">
           Siguiente
         </button>
       </div>

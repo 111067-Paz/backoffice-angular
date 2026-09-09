@@ -8,13 +8,13 @@
   <link rel="icon" type="image/svg+xml" href="logo-utn-frc.svg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   
-  <!-- Fonts: Inter & JetBrains Mono + Material Symbols Outlined -->
+  <!-- Fonts: Barlow, Silkscreen, Inter & JetBrains Mono + Material Symbols Outlined -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Silkscreen:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN with Material 3 Theme Tokens from DESIGN.md -->
+  <!-- Tailwind CSS CDN with Arcade / Neo-Brutalist Theme Tokens from elearning-platform -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script id="tailwind-config">
     tailwind.config = {
@@ -22,31 +22,45 @@
       theme: {
         extend: {
           colors: {
-            "surface": "#f7f9ff",
-            "surface-dim": "#d7dae0",
-            "surface-bright": "#f7f9ff",
+            "paper": "#f7f5f0",
+            "ink": "#292738",
+            "orange": "#e66d45",
+            "orange-dark": "#9e472d",
+            "green": "#378260",
+            "green-dark": "#20533c",
+            "gold": "#f6c66a",
+            "gold-dark": "#d78a31",
+            "line": "#e3ded5",
+            "muted": "#88828a",
+            "coral": "#f47b77",
+            "purple": "#665677",
+            "surface": "#f7f5f0",
+            "surface-dim": "#e5dfd3",
+            "surface-bright": "#fffdf9",
             "surface-container-lowest": "#ffffff",
-            "surface-container-low": "#f1f4fa",
-            "surface-container": "#ebeef4",
-            "surface-container-high": "#e5e8ee",
-            "surface-container-highest": "#dfe3e8",
-            "on-surface": "#181c20",
-            "on-surface-variant": "#3f4850",
-            "outline": "#707881",
-            "outline-variant": "#bfc7d2",
-            "primary": "#006194",
-            "primary-container": "#007bb9",
+            "surface-container-low": "#faf7f2",
+            "surface-container": "#f4eddf",
+            "surface-container-high": "#ece5d5",
+            "surface-container-highest": "#e3ded5",
+            "on-surface": "#292738",
+            "on-surface-variant": "#6e6774",
+            "outline": "#88828a",
+            "outline-variant": "#d9d2c8",
+            "primary": "#e66d45",
+            "primary-container": "#f6c66a",
             "on-primary": "#ffffff",
-            "secondary": "#4059aa",
-            "secondary-container": "#8fa7fe",
-            "tertiary": "#006195",
-            "error": "#ba1a1a",
-            "primary-fixed": "#cce5ff",
-            "on-primary-fixed": "#001d31",
-            "primary-fixed-dim": "#93ccff"
+            "secondary": "#378260",
+            "secondary-container": "#e9efe5",
+            "tertiary": "#665677",
+            "error": "#f47b77",
+            "primary-fixed": "#fdeee9",
+            "on-primary-fixed": "#5a1f11",
+            "primary-fixed-dim": "#f8c5b6"
           },
           fontFamily: {
-            sans: ["Inter", "sans-serif"],
+            sans: ["Barlow", "Inter", "sans-serif"],
+            body: ["Barlow", "sans-serif"],
+            pixel: ["Silkscreen", "monospace"],
             mono: ["JetBrains Mono", "monospace"]
           }
         }
@@ -54,7 +68,7 @@
     };
   </script>
 </head>
-<body class="bg-surface font-sans text-on-surface h-full m-0 p-0 overflow-hidden antialiased">
+<body class="bg-paper font-sans text-ink h-full m-0 p-0 overflow-hidden antialiased">
   <app-root class="h-full flex flex-col"></app-root>
 </body>
 </html>

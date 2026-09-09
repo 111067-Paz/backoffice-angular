@@ -1,1 +1,144 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles - Arcade / Neo-Brutalist Theme from elearning-platform */
+:root {
+  --ink: #292738;
+  --muted: #88828a;
+  --paper: #f7f5f0;
+  --orange: #e66d45;
+  --orange-dark: #9e472d;
+  --line: #e3ded5;
+  --green: #378260;
+  --gold: #f6c66a;
+  --coral: #f47b77;
+  --pixel: 'Silkscreen', monospace;
+  --body: 'Barlow', 'Trebuchet MS', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+}
+
+/* Tactile 3D Buttons & Arcade Styles */
+.btn-arcade {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  border: 2px solid var(--orange-dark);
+  background: var(--orange);
+  box-shadow: 0 4px 0 var(--orange-dark);
+  color: #ffffff;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+  cursor: pointer;
+}
+
+.btn-arcade:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--orange-dark);
+  filter: brightness(1.05);
+}
+
+.btn-arcade:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--orange-dark);
+}
+
+.btn-arcade:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+  box-shadow: 0 3px 0 var(--muted);
+  border-color: var(--muted);
+}
+
+/* Secondary Arcade Button */
+.btn-arcade-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  border: 2px solid var(--ink);
+  background: #ffffff;
+  box-shadow: 3px 3px 0 var(--ink);
+  color: var(--ink);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  cursor: pointer;
+}
+
+.btn-arcade-secondary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 4px 5px 0 var(--ink);
+  background: #faf7f2;
+}
+
+.btn-arcade-secondary:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* Solid Shadow Arcade Cards */
+.card-arcade {
+  background: #ffffff;
+  border: 2px solid var(--line);
+  box-shadow: 4px 4px 0 #e3ded5;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.card-arcade:hover {
+  border-color: var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.card-arcade-ink {
+  background: #ffffff;
+  border: 2px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+/* Pixel Badges */
+.badge-pixel {
+  font-family: var(--pixel);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 3px 7px;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Dotted Parchment Background */
+.pattern-dots {
+  background-color: var(--paper);
+  background-image: radial-gradient(#c4b59955 0.75px, transparent 0.75px);
+  background-size: 8px 8px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d9d2c8;
+  border: 2px solid var(--paper);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}

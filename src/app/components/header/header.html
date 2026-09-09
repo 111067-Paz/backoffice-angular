@@ -1,38 +1,46 @@
-<header class="h-16 bg-[#0F172A] text-white flex-shrink-0 z-40 flex items-center justify-between px-6 shadow-md border-b border-slate-800">
-  <!-- Izquierda: Identidad Institucional & Gateway -->
-  <div class="flex items-center gap-4">
+<header class="h-[86px] bg-[#292738] text-white flex-shrink-0 z-40 flex items-center justify-between px-6 border-b-4 border-[#464254] shadow-md">
+  <!-- Izquierda: Identidad Institucional Arcade con Brand-Mark dorado -->
+  <div class="flex items-center gap-5">
     <div class="flex items-center gap-3">
-      <div class="bg-white px-2.5 py-1.5 rounded-lg shadow-sm flex items-center justify-center border border-white/20">
-        <app-logo-utn class="h-7 w-auto block" />
+      <div class="w-[42px] h-[44px] bg-[#f6c66a] flex items-center justify-center shadow-[3px_3px_0_#13121f] text-[#292738] border border-[#d78a31]">
+        <app-logo-utn class="h-6 w-auto block" />
       </div>
       <div>
-        <span class="font-bold text-sm tracking-tight leading-tight block">UTN FRC Backoffice</span>
-        <span class="text-slate-400 text-xs font-mono block">Tema 12 • Angular 21 SPA</span>
+        <div class="flex items-center gap-2">
+          <span class="font-extrabold text-lg tracking-tight text-white font-sans">UTN FRC</span>
+          <span class="font-medium text-lg text-[#ddd8e0] font-sans">Backoffice</span>
+        </div>
+        <small class="block font-pixel text-[8px] tracking-[1.5px] text-[#a6a0af] mt-0.5">TEMA 12 • GOBERNANZA & ANALÍTICA</small>
       </div>
     </div>
 
-    <!-- Píldora Kafka -->
-    <div class="hidden md:flex items-center gap-2 bg-emerald-950/70 border border-emerald-500/30 px-3 py-1 rounded-full text-xs text-emerald-300">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span class="font-mono">Kafka API Gateway ({{ systemStatus().servicesOnline }}/{{ systemStatus().servicesTotal }} Servicios OK)</span>
+    <!-- Píldora HUD Kafka Status -->
+    <div class="hidden lg:flex items-center gap-2.5 bg-[#393447] border border-[#65543d] border-b-[3px] border-b-[#171520] px-3.5 py-1.5 text-xs text-[#f6ce76] shadow-sm">
+      <span class="w-2.5 h-2.5 rounded-full bg-[#378260] shadow-[0_0_0_2px_#37826040] animate-pulse"></span>
+      <span class="font-pixel text-[10px] tracking-wide text-white">KAFKA GATEWAY:</span>
+      <strong class="font-pixel text-[11px] text-[#f6c66a]">{{ systemStatus().servicesOnline }}/{{ systemStatus().servicesTotal }} SERVICIOS OK</strong>
     </div>
   </div>
 
-  <!-- Derecha: Seguridad 2FA & Perfil Docente -->
-  <div class="flex items-center gap-3">
-    <div class="hidden sm:flex items-center gap-1.5 bg-blue-900/50 border border-blue-400/30 px-3 py-1 rounded-full text-blue-200 text-xs">
-      <span class="material-symbols-outlined text-[15px] text-blue-300">verified_user</span>
-      <span class="font-medium tracking-wide uppercase text-[10px]">2FA Verificado</span>
+  <!-- Derecha: HUD de Seguridad & Perfil Arcade -->
+  <div class="flex items-center gap-4">
+    <!-- Stat 2FA Verificado -->
+    <div class="hidden sm:flex items-center gap-2 bg-[#3a3548] border border-[#5c5569] px-3 py-1.5 shadow-[2px_2px_0_#171520]">
+      <span class="material-symbols-outlined text-[16px] text-[#378260]">verified_user</span>
+      <span class="font-pixel text-[9px] text-[#ddd8e0] tracking-wider">2FA ACTIVO</span>
     </div>
 
-    <div class="flex items-center gap-3 bg-slate-800/80 px-3.5 py-1.5 rounded-lg border border-slate-700/60">
+    <!-- Perfil del Administrador Arcade -->
+    <div class="flex items-center gap-3 bg-[#393447] px-3.5 py-1.5 border border-[#51495c] border-b-[3px] border-b-[#171420] shadow-[3px_3px_0_#13121f]">
       <div class="flex flex-col text-right">
-        <span class="text-xs font-semibold leading-tight text-white">{{ systemStatus().userName }}</span>
-        <span class="text-[10px] text-slate-300 font-mono leading-tight">Rol: {{ systemStatus().userRole }}</span>
+        <span class="text-xs font-bold leading-tight text-white font-sans">{{ systemStatus().userName }}</span>
+        <span class="text-[9px] text-[#f6c66a] font-pixel leading-tight">{{ systemStatus().userRole }}</span>
       </div>
-      <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white shadow-sm font-semibold text-xs">
+      <div class="relative w-9 h-9 bg-[#665677] border-2 border-[#98869d] shadow-[2px_2px_0_#171420] flex items-center justify-center text-white font-bold font-pixel text-xs">
         {{ systemStatus().userInitials }}
+        <span class="absolute -right-1 -bottom-1 w-2.5 h-2.5 bg-[#9ac891] border-2 border-[#292738] rounded-full"></span>
       </div>
     </div>
   </div>
 </header>
+

@@ -1,14 +1,14 @@
-<aside class="w-72 bg-surface-container-low border-r border-outline-variant/40 flex flex-col flex-shrink-0 z-30 shadow-sm h-full select-none">
+<aside class="w-72 bg-[#f4eddf] border-r-2 border-[#e3ded5] flex flex-col flex-shrink-0 z-30 shadow-sm h-full select-none">
   <!-- Buscador rápido de módulos -->
-  <div class="p-3 border-b border-outline-variant/30 flex-shrink-0">
-    <div class="relative">
-      <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+  <div class="p-3 border-b-2 border-[#e3ded5] flex-shrink-0 bg-[#faf7f2]">
+    <div class="relative flex items-center">
+      <span class="material-symbols-outlined absolute left-2.5 text-[#292738] text-[18px]">search</span>
       <input
         type="text"
         [value]="searchTerm()"
         (input)="onSearch($event)"
-        placeholder="Filtrar módulos (1 al 9)..."
-        class="w-full pl-8 pr-3 py-1.5 text-xs bg-surface-container-lowest border border-outline-variant/50 rounded-lg text-on-surface focus:outline-none focus:ring-2 focus:ring-primary placeholder:text-outline"
+        placeholder="Buscar módulo (1 al 9)..."
+        class="w-full pl-8 pr-3 py-1.5 text-xs bg-white border-2 border-[#292738] rounded shadow-[2px_2px_0_#292738] text-[#292738] focus:outline-none focus:bg-[#fffdf9] placeholder:text-[#88828a] font-sans font-medium"
       />
     </div>
   </div>
@@ -18,38 +18,41 @@
     @for (mod of filteredModules(); track mod.route) {
       <a
         [routerLink]="mod.route"
-        routerLinkActive="bg-primary text-on-primary font-semibold shadow-sm"
+        routerLinkActive="bg-[#f6c66a] text-[#292738] font-bold border-[#292738] shadow-[3px_3px_0_#292738] translate-x-0.5"
         [routerLinkActiveOptions]="{ exact: false }"
-        class="w-full text-left flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-all text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface group"
+        class="w-full text-left flex items-center justify-between px-3 py-2 border-2 border-transparent rounded text-xs text-[#292738] hover:bg-white hover:border-[#292738] hover:shadow-[2px_2px_0_#292738] transition-all group font-sans"
       >
         <div class="flex items-center gap-2.5 truncate">
-          <span class="material-symbols-outlined text-[19px] transition-colors group-hover:text-primary">
+          <span class="material-symbols-outlined text-[19px] transition-transform group-hover:scale-110 text-[#292738]">
             {{ mod.icon }}
           </span>
-          <span class="truncate">{{ mod.label }}</span>
+          <span class="truncate font-semibold">{{ mod.label }}</span>
         </div>
-        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant group-hover:bg-surface-container">
-          {{ mod.badge }}
+        <span class="font-pixel text-[9px] px-1.5 py-0.5 border border-[#292738] bg-white text-[#292738] shadow-[1px_1px_0_#292738] rounded-sm group-hover:bg-[#f6c66a]">
+          MOD-0{{ mod.badge }}
         </span>
       </a>
     } @empty {
-      <div class="px-3 py-6 text-center text-xs text-outline">
-        No se encontraron módulos
+      <div class="px-3 py-6 text-center text-xs text-[#88828a] font-pixel">
+        NO SE ENCONTRARON MODULOS
       </div>
     }
   </nav>
 
   <!-- Footer Institucional de la barra lateral -->
-  <div class="p-3 bg-surface-container border-t border-outline-variant/30 text-[11px] text-on-surface-variant flex-shrink-0">
+  <div class="p-3 bg-[#ece5d5] border-t-2 border-[#e3ded5] text-[11px] text-[#292738] flex-shrink-0">
     <div class="flex items-center justify-between mb-2">
-      <app-logo-utn class="h-5 w-auto opacity-85 block" />
-      <span class="font-mono font-bold text-primary bg-primary-fixed/60 px-1.5 py-0.5 rounded text-[10px]">
+      <div class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-[#378260] inline-block animate-ping"></span>
+        <span class="font-pixel text-[9px] text-[#292738] tracking-wider">GATEWAY ONLINE</span>
+      </div>
+      <span class="font-pixel text-[9px] text-white bg-[#e66d45] border border-[#9e472d] shadow-[2px_2px_0_#9e472d] px-1.5 py-0.5 rounded-sm">
         v2.4.0
       </span>
     </div>
-    <div class="flex items-center justify-between text-[10px] text-outline font-mono">
+    <div class="flex items-center justify-between text-[10px] text-[#88828a] font-sans font-medium">
       <span>UTN FRC • Tema 12</span>
-      <span>Angular 21</span>
+      <span class="font-pixel text-[9px] text-[#292738]">ANGULAR 21</span>
     </div>
   </div>
 </aside>

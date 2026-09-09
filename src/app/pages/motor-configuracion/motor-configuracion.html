@@ -3,25 +3,25 @@
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
     <div>
       <div class="flex items-center gap-2 mb-1">
-        <span class="text-xs font-mono px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-semibold">MOD-07</span>
-        <span class="text-xs text-outline">•</span>
-        <span class="text-xs text-outline font-semibold text-primary">Tema 12 • FRC Core</span>
+        <span class="badge-pixel bg-[#f6c66a] text-[#292738] border border-[#292738] shadow-[1px_1px_0_#292738]">MOD-07</span>
+        <span class="text-xs text-[#88828a]">•</span>
+        <span class="font-pixel text-[10px] text-[#e66d45] tracking-wider">TEMA 12 • FRC CORE</span>
       </div>
-      <h1 class="text-2xl font-bold text-on-surface tracking-tight">Motor de Configuración Global</h1>
-      <p class="text-sm text-on-surface-variant mt-0.5">Consola operativa de sincronización en clúster y bitácora de auditoría inmutable (RF-AUD-02).</p>
+      <h1 class="text-3xl font-black text-[#292738] tracking-tight font-sans">Motor de Configuración Global</h1>
+      <p class="text-xs text-[#88828a] mt-0.5 font-sans font-medium">Consola operativa de sincronización en clúster y bitácora de auditoría inmutable (RF-AUD-02).</p>
     </div>
 
     <div class="flex items-center gap-3">
       <button
         (click)="forceClusterSync()"
-        class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-2 transition-colors border border-outline-variant/30"
+        class="btn-arcade-secondary text-xs px-4 py-2 rounded font-sans flex items-center gap-2"
       >
         <span class="material-symbols-outlined text-[16px]">sync</span>
         <span>Sincronizar Clúster</span>
       </button>
       <button
         (click)="exportAudit()"
-        class="bg-primary hover:bg-primary-container text-white text-xs font-semibold px-4 py-2 rounded-xl flex items-center gap-2 transition-all shadow-sm"
+        class="btn-arcade text-xs px-4 py-2 rounded font-sans flex items-center gap-2"
       >
         <span class="material-symbols-outlined text-[16px]">file_download</span>
         <span>Exportar AdminAuditLog</span>
@@ -30,49 +30,49 @@
   </div>
 
   @if (feedback()) {
-    <div class="bg-primary-fixed/30 border border-primary/20 text-on-primary-fixed px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 animate-fadeIn">
-      <span class="material-symbols-outlined text-primary text-[18px]">info</span>
-      <span>{{ feedback() }}</span>
+    <div class="bg-[#fef9ee] border-2 border-[#f6c66a] shadow-[3px_3px_0_#f6c66a] text-[#292738] px-4 py-2.5 rounded text-xs flex items-center gap-2">
+      <span class="material-symbols-outlined text-[#e66d45] text-[18px]">info</span>
+      <span class="font-bold">{{ feedback() }}</span>
     </div>
   }
 
-  <!-- 4 Cards Superiores de Estado -->
+  <!-- 4 Cards Superiores de Estado Arcade -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     @for (card of summaryCards(); track card.title) {
-      <div class="bg-surface-container-lowest p-5 rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between hover:border-primary/40 transition-all">
+      <div class="card-arcade p-5 rounded-lg flex flex-col justify-between">
         <div class="flex items-center justify-between mb-3">
-          <span class="text-xs uppercase font-semibold text-outline tracking-wider">{{ card.title }}</span>
-          <span class="p-2 rounded-xl bg-surface-container-high text-primary material-symbols-outlined text-[20px]">{{ card.icon }}</span>
+          <span class="text-[11px] uppercase font-bold text-[#88828a] tracking-wider font-sans">{{ card.title }}</span>
+          <span class="p-2 rounded border-2 border-[#292738] bg-[#f6c66a] text-[#292738] shadow-[2px_2px_0_#292738] material-symbols-outlined text-[20px]">{{ card.icon }}</span>
         </div>
         <div>
-          <div class="text-2xl font-bold text-on-surface font-mono">{{ card.value }}</div>
-          <p class="text-xs text-outline mt-1 font-medium">{{ card.sub }}</p>
+          <div class="text-3xl font-black text-[#292738] font-mono">{{ card.value }}</div>
+          <p class="text-xs text-[#88828a] mt-1 font-sans font-medium">{{ card.sub }}</p>
         </div>
       </div>
     }
   </div>
 
-  <!-- Contenedor Principal: Tabla de Parámetros Operativos -->
-  <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm overflow-hidden">
-    <div class="p-6 border-b border-surface-container-highest flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4">
+  <!-- Contenedor Principal: Tabla de Parámetros Operativos Arcade -->
+  <div class="card-arcade rounded-lg overflow-hidden">
+    <div class="p-6 border-b-2 border-[#e3ded5] flex flex-col md:flex-row justify-between items-stretch md:items-center gap-4 bg-[#faf7f2]">
       <div class="relative flex-1 max-w-md">
-        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#88828a] text-[18px]">search</span>
         <input
           type="text"
           [value]="searchTerm()"
           (input)="onSearch($event)"
           placeholder="Buscar parámetro operativo, clave o autor..."
-          class="w-full pl-10 pr-4 py-2 bg-surface-container-high rounded-xl text-xs text-on-surface placeholder:text-outline border-none focus:ring-2 focus:ring-primary"
+          class="w-full pl-10 pr-4 py-1.5 bg-white border-2 border-[#292738] rounded shadow-[2px_2px_0_#292738] text-xs text-[#292738] placeholder:text-[#88828a] focus:outline-none font-sans"
         />
       </div>
 
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center gap-2">
-          <span class="text-xs text-outline font-medium">Categoría:</span>
+          <span class="text-xs text-[#88828a] font-bold font-pixel text-[10px]">CATEGORÍA:</span>
           <select
             [value]="selectedCategory()"
             (change)="onSelectCategory($event)"
-            class="bg-surface-container-high rounded-xl text-xs px-3 py-2 text-on-surface border-none focus:ring-2 focus:ring-primary font-medium"
+            class="bg-white border-2 border-[#292738] shadow-[2px_2px_0_#292738] rounded text-xs px-3 py-1.5 text-[#292738] focus:outline-none font-sans font-bold cursor-pointer"
           >
             <option value="Todas">Todas las Categorías</option>
             <option value="Economía">Economía</option>
@@ -83,11 +83,11 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <span class="text-xs text-outline font-medium">Estado:</span>
+          <span class="text-xs text-[#88828a] font-bold font-pixel text-[10px]">ESTADO:</span>
           <select
             [value]="selectedStatus()"
             (change)="onSelectStatus($event)"
-            class="bg-surface-container-high rounded-xl text-xs px-3 py-2 text-on-surface border-none focus:ring-2 focus:ring-primary font-medium"
+            class="bg-white border-2 border-[#292738] shadow-[2px_2px_0_#292738] rounded text-xs px-3 py-1.5 text-[#292738] focus:outline-none font-sans font-bold cursor-pointer"
           >
             <option value="Todos">Todos los Estados</option>
             <option value="Vigente">Vigente</option>
@@ -100,46 +100,50 @@
     <!-- Tabla -->
     <div class="overflow-x-auto">
       <table class="w-full text-left text-xs">
-        <thead class="bg-surface-container-low text-on-surface-variant font-semibold border-b border-surface-container-highest">
+        <thead class="bg-[#292738] text-white font-pixel text-[10px] tracking-wider border-b-2 border-[#292738]">
           <tr>
-            <th class="py-3.5 px-4">Código PAR</th>
-            <th class="py-3.5 px-4">Descripción / Clave</th>
-            <th class="py-3.5 px-4">Categoría</th>
-            <th class="py-3.5 px-4">Valor en Clúster</th>
-            <th class="py-3.5 px-4">Tipo</th>
-            <th class="py-3.5 px-4">Modificador</th>
-            <th class="py-3.5 px-4 text-center">Estado</th>
-            <th class="py-3.5 px-4 text-right">Última Sincro</th>
+            <th class="py-3 px-4">CÓDIGO PAR</th>
+            <th class="py-3 px-4">DESCRIPCIÓN / CLAVE</th>
+            <th class="py-3 px-4">CATEGORÍA</th>
+            <th class="py-3 px-4">VALOR EN CLÚSTER</th>
+            <th class="py-3 px-4">TIPO</th>
+            <th class="py-3 px-4">MODIFICADOR</th>
+            <th class="py-3 px-4 text-center">ESTADO</th>
+            <th class="py-3 px-4 text-right">ÚLTIMA SINCRO</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-surface-container-highest">
+        <tbody class="divide-y divide-[#e3ded5]">
           @for (p of filteredParams(); track p.code) {
-            <tr class="hover:bg-surface-container-low transition-colors">
-              <td class="py-3.5 px-4 font-mono font-bold text-primary">{{ p.code }}</td>
-              <td class="py-3.5 px-4 font-medium text-on-surface">{{ p.name }}</td>
-              <td class="py-3.5 px-4 text-on-surface-variant">{{ p.category }}</td>
-              <td class="py-3.5 px-4 font-mono font-bold text-on-surface">{{ p.value }}</td>
-              <td class="py-3.5 px-4 text-[11px] text-outline font-mono">{{ p.type }}</td>
+            <tr class="hover:bg-[#faf7f2] transition-colors">
+              <td class="py-3.5 px-4 font-mono font-bold text-[#e66d45]">{{ p.code }}</td>
+              <td class="py-3.5 px-4 font-bold text-[#292738] font-sans">{{ p.name }}</td>
+              <td class="py-3.5 px-4 text-[#88828a] font-sans font-medium">{{ p.category }}</td>
+              <td class="py-3.5 px-4 font-mono font-bold text-[#292738]">{{ p.value }}</td>
+              <td class="py-3.5 px-4 text-[11px] text-[#88828a] font-mono">{{ p.type }}</td>
               <td class="py-3.5 px-4">
                 <div class="flex items-center gap-2">
-                  <div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-primary">
+                  <div class="w-6 h-6 rounded border border-[#292738] bg-[#f6c66a] flex items-center justify-center text-[10px] font-bold text-[#292738] font-pixel shadow-[1px_1px_0_#292738]">
                     {{ p.author.slice(0, 2).toUpperCase() }}
                   </div>
-                  <span class="font-medium text-on-surface text-[11px]">{{ p.author }}</span>
+                  <span class="font-bold text-[#292738] text-[11px] font-sans">{{ p.author }}</span>
                 </div>
               </td>
               <td class="py-3.5 px-4 text-center">
                 <span
-                  class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold inline-block"
-                  [class.bg-emerald-50]="p.status === 'Vigente'"
-                  [class.text-emerald-700]="p.status === 'Vigente'"
-                  [class.bg-amber-50]="p.status === 'Modificado'"
-                  [class.text-amber-700]="p.status === 'Modificado'"
+                  class="badge-pixel"
+                  [class.bg-[#edf6f1]]="p.status === 'Vigente'"
+                  [class.text-[#378260]]="p.status === 'Vigente'"
+                  [class.border]="p.status === 'Vigente'"
+                  [class.border-[#378260]]="p.status === 'Vigente'"
+                  [class.bg-[#fef9ee]]="p.status === 'Modificado'"
+                  [class.text-[#d78a31]]="p.status === 'Modificado'"
+                  [class.border]="p.status === 'Modificado'"
+                  [class.border-[#d78a31]]="p.status === 'Modificado'"
                 >
                   {{ p.status }}
                 </span>
               </td>
-              <td class="py-3.5 px-4 text-right font-mono text-[11px] text-outline">{{ p.lastSync }}</td>
+              <td class="py-3.5 px-4 text-right font-mono text-[11px] text-[#88828a]">{{ p.lastSync }}</td>
             </tr>
           }
         </tbody>
@@ -147,34 +151,34 @@
     </div>
   </div>
 
-  <!-- Sección de Historial de Auditoría Global (AdminAuditLog • RF-AUD-02) -->
-  <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/30 shadow-sm p-6 space-y-4">
-    <div class="flex items-center justify-between pb-3 border-b border-surface-container-highest">
+  <!-- Sección de Historial de Auditoría Global (AdminAuditLog • RF-AUD-02) Arcade -->
+  <div class="card-arcade rounded-lg p-6 space-y-4">
+    <div class="flex items-center justify-between pb-3 border-b-2 border-[#e3ded5]">
       <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary text-[22px]">history_edu</span>
+        <span class="p-2 rounded border-2 border-[#292738] bg-[#f6c66a] text-[#292738] shadow-[2px_2px_0_#292738] material-symbols-outlined text-[20px]">history_edu</span>
         <div>
-          <h2 class="text-base font-bold text-on-surface">Bitácora de Auditoría Operativa (AdminAuditLog)</h2>
-          <p class="text-xs text-on-surface-variant">Trazabilidad obligatoria de cambios en parámetros (RF-AUD-01 / RF-AUD-02) con IP y justificación</p>
+          <h2 class="text-base font-bold text-[#292738] font-sans">Bitácora de Auditoría Operativa (AdminAuditLog)</h2>
+          <p class="text-xs text-[#88828a] font-sans">Trazabilidad obligatoria de cambios en parámetros (RF-AUD-01 / RF-AUD-02) con IP y justificación</p>
         </div>
       </div>
-      <span class="text-xs font-mono px-2.5 py-1 rounded bg-surface-container-high text-outline">Persistencia en Tema 01</span>
+      <span class="badge-pixel bg-[#f4eddf] text-[#292738] border border-[#e3ded5]">PERSISTENCIA EN TEMA 01</span>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       @for (log of auditHistory(); track log.id) {
-        <div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/20 hover:border-primary/30 transition-all flex flex-col justify-between space-y-3">
+        <div class="p-4 rounded border-2 border-[#e3ded5] bg-[#faf7f2] hover:border-[#292738] hover:shadow-[2px_2px_0_#292738] transition-all flex flex-col justify-between space-y-3">
           <div class="space-y-1.5">
             <div class="flex items-center justify-between">
-              <span class="font-mono font-bold text-xs text-primary px-2 py-0.5 rounded bg-primary-fixed">{{ log.paramCode }}</span>
-              <span class="text-[10px] text-outline font-mono">{{ log.timeAgo }}</span>
+              <span class="badge-pixel bg-[#e66d45] text-white border border-[#9e472d] shadow-[1px_1px_0_#9e472d]">{{ log.paramCode }}</span>
+              <span class="text-[10px] text-[#88828a] font-mono">{{ log.timeAgo }}</span>
             </div>
-            <div class="text-xs font-bold text-on-surface">{{ log.changeDescription }}</div>
-            <p class="text-xs text-on-surface-variant italic leading-relaxed">"{{ log.justification }}"</p>
+            <div class="text-xs font-bold text-[#292738] font-sans">{{ log.changeDescription }}</div>
+            <p class="text-xs text-[#88828a] italic leading-relaxed font-sans">"{{ log.justification }}"</p>
           </div>
 
-          <div class="pt-2 border-t border-surface-container-highest flex items-center justify-between text-[11px] text-outline font-mono">
-            <span>{{ log.actor }}</span>
-            <span class="font-semibold text-on-surface">IP: {{ log.ip }}</span>
+          <div class="pt-2 border-t border-[#e3ded5] flex items-center justify-between text-[11px] text-[#88828a] font-mono">
+            <span class="font-bold text-[#292738]">{{ log.actor }}</span>
+            <span class="font-bold text-[#292738]">IP: {{ log.ip }}</span>
           </div>
         </div>
       }
