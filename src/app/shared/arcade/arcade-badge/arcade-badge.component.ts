@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-export type ArcadeBadgeTone = 'cyan' | 'magenta' | 'yellow' | 'green' | 'red' | 'neutral';
+export type ArcadeBadgeTone = 'cyan' | 'magenta' | 'yellow' | 'gold' | 'green' | 'red' | 'neutral';
 export type ArcadeBadgeAppearance = 'solid' | 'outline';
 export type ArcadeBadgeSize = 'sm' | 'md';
 
@@ -30,12 +30,12 @@ export type ArcadeBadgeSize = 'sm' | 'md';
       [class.text-brand]="tone() === 'magenta' && appearance() === 'outline'"
       [class.border-brand/60]="tone() === 'magenta' && appearance() === 'outline'"
       [class.bg-brand/10]="tone() === 'magenta' && appearance() === 'outline'"
-      [class.bg-gold]="tone() === 'yellow' && appearance() === 'solid'"
-      [class.text-slate-950]="tone() === 'yellow' && appearance() === 'solid'"
-      [class.border-gold]="tone() === 'yellow' && appearance() === 'solid'"
-      [class.text-gold]="tone() === 'yellow' && appearance() === 'outline'"
-      [class.border-gold/60]="tone() === 'yellow' && appearance() === 'outline'"
-      [class.bg-gold/10]="tone() === 'yellow' && appearance() === 'outline'"
+      [class.bg-gold]="(tone() === 'yellow' || tone() === 'gold') && appearance() === 'solid'"
+      [class.text-slate-950]="(tone() === 'yellow' || tone() === 'gold') && appearance() === 'solid'"
+      [class.border-gold]="(tone() === 'yellow' || tone() === 'gold') && appearance() === 'solid'"
+      [class.text-gold]="(tone() === 'yellow' || tone() === 'gold') && appearance() === 'outline'"
+      [class.border-gold/60]="(tone() === 'yellow' || tone() === 'gold') && appearance() === 'outline'"
+      [class.bg-gold/10]="(tone() === 'yellow' || tone() === 'gold') && appearance() === 'outline'"
       [class.bg-success]="tone() === 'green' && appearance() === 'solid'"
       [class.text-slate-950]="tone() === 'green' && appearance() === 'solid'"
       [class.border-success]="tone() === 'green' && appearance() === 'solid'"
