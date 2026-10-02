@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ArcadeBadgeComponent } from '../../shared/arcade/arcade-badge/arcade-badge.component';
 
 export interface OfficialKpi {
   readonly code: string;
@@ -31,7 +32,7 @@ export interface SecurityIncident {
 
 @Component({
   selector: 'app-observabilidad-institucional',
-  imports: [],
+  imports: [ArcadeBadgeComponent],
   templateUrl: './observabilidad-institucional.html',
   styleUrl: './observabilidad-institucional.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
